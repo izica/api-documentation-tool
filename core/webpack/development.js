@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 module.exports = {
   entry: './core/index.js',
@@ -11,13 +12,14 @@ module.exports = {
     publicPath: '/',
     hot: true,
     open: true,
-    overlay: {
-      warnings: true,
-      errors: true,
-    },
+    quiet: true,
+    historyApiFallback: true,
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new FriendlyErrorsWebpackPlugin({
+      clearConsole: true,
+    }),
   ],
   module: {
     rules: [

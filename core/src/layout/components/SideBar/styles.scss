@@ -6,4 +6,27 @@
     left: 0;
     top: 0;
     overflow-y: auto;
+
+    &__logo {
+        font-size: 24px;
+        font-weight: bold;
+        padding: 20px;
+        text-align: center;
+        border-bottom: 2px #4b48d6 solid;
+    }
+
+    &__content{
+        padding: 10px 20px;
+    }
+
+    &-section{
+        &__title{
+            font-weight: 600;
+            color: #505c6e;
+            text-transform: uppercase;
+            user-select: none;
+            cursor: pointer;
+        }
+    }
+
 }

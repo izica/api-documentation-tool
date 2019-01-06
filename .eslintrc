@@ -16,7 +16,7 @@
     "import/prefer-default-export": [0, "never"],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/require-default-props": [0, "never"],
-    "react/forbid-prop-types": [0, "never"],
-    "react/jsx-uses-react": 1
+    "react/jsx-uses-react": 1,
+    "jsx-a11y/anchor-is-valid": [0, "never"]
   }
 }
