@@ -1,0 +1,22 @@
+{
+  "parser": "babel-eslint",
+  "plugins": [
+    "react",
+    "jsx-a11y",
+    "import"
+  ],
+  "extends": [
+    "airbnb"
+  ],
+  "rules": {
+    "func-names": ["error", "never"],
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "no-restricted-syntax": ["error", "never"],
+    "import/no-named-as-default": [0, "never"],
+    "import/prefer-default-export": [0, "never"],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/require-default-props": [0, "never"],
+    "react/forbid-prop-types": [0, "never"],
+    "react/jsx-uses-react": 1
+  }
+}
