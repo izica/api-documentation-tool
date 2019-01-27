@@ -21,8 +21,16 @@ import {
   SchemaPage
 } from '../pages';
 
+import '../classes'
+
 import './styles/spectre.css';
 import './styles/styles.scss';
+
+import UserAdd from '../../../api/user/add';
+
+const userAdd = new UserAdd();
+console.log(userAdd);
+
 
 class Layout extends React.Component {
   render = () => {
