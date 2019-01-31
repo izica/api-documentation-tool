@@ -2,7 +2,7 @@ const PARAMETER_TYPE = {
     HEADER: 'header',
     BODY: 'body',
     QUERY: 'query',
-    DATA: 'data',
+    RAW: 'raw',
 };
 
 export default PARAMETER_TYPE;

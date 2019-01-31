@@ -1,6 +1,5 @@
 const api = {
     baseUrl: '',
-    format: 'default', //xml, json,
     auth: {
         username: 'username',
         password: 'password'

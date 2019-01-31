@@ -19,7 +19,7 @@ import './styles/styles.scss';
 import UserLogin from '../../../api/user/UserLogin';
 
 const userAdd = new UserLogin();
-userAdd.beforeExecute();
+userAdd.init();
 console.log(userAdd);
 
 

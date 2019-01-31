@@ -1,4 +1,5 @@
 import REQUEST_TYPE from "../constants/REQUEST_TYPE";
+import Parameter from './Parameter';
 
 class Request {
     baseUrl = null;
@@ -10,7 +11,7 @@ class Request {
      * @param baseUrl
      * @returns {Request}
      */
-    setBaseUrl = baseUrl => {
+    setBaseUrl = (baseUrl = null) => {
         this.baseUrl = baseUrl;
         return this;
     };
@@ -19,7 +20,7 @@ class Request {
      * @param url
      * @returns {Request}
      */
-    setUrl = url => {
+    setUrl = (url = '/') => {
         this.url = url;
         return this;
     };
@@ -28,7 +29,7 @@ class Request {
      * @param type
      * @returns {Request}
      */
-    setType = type => {
+    setType = (type = REQUEST_TYPE.GET) => {
         this.type = type;
         return this;
     };
@@ -37,7 +38,7 @@ class Request {
      * @param param
      * @returns {Request}
      */
-    addParam = param => {
+    addParam = (param = Parameter.create()) => {
         this.params.push(param);
         return this;
     };

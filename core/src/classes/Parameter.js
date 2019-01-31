@@ -2,18 +2,24 @@ import PARAMETER_TYPE from "../constants/PARAMETER_TYPE";
 import VIEW_TYPE from "../constants/VIEW_TYPE";
 
 class Parameter {
+    #isLabelSet = false;
+
     type = PARAMETER_TYPE.QUERY;
     view = VIEW_TYPE.INPUT;
-    name = "text";
+    name = "name";
     placeholder = '';
     label = 'field';
     description = '';
     required = false;
+    value = false;
+    model = false;
+
 
     /**
      * @returns {Parameter}
      */
     create = () => {
+        console.log(this.#isLabelSet);
         return new Parameter();
     }
 
@@ -21,7 +27,7 @@ class Parameter {
      * @param view
      * @returns {Parameter}
      */
-    setView = view => {
+    setView = (view = VIEW_TYPE.INPUT) => {
         this.view = view;
         return this;
     }
@@ -30,7 +36,10 @@ class Parameter {
      * @param name
      * @returns {Parameter}
      */
-    setName = name => {
+    setName = (name = 'name') => {
+        if(this.#isLabelSet === false){
+            this.label = name.charAt(0).toUpperCase() + name.slice(1);
+        }
         this.name = name;
         return this;
     }
@@ -39,7 +48,7 @@ class Parameter {
      * @param placeholder
      * @returns {Parameter}
      */
-    setPlaceholder = placeholder => {
+    setPlaceholder = (placeholder = '') => {
         this.placeholder = placeholder;
         return this;
     }
@@ -48,7 +57,8 @@ class Parameter {
      * @param label
      * @returns {Parameter}
      */
-    setLabel = label => {
+    setLabel = (label = 'field') => {
+        this.#isLabelSet = true;
         this.label = label;
         return this;
     }
@@ -57,7 +67,7 @@ class Parameter {
      * @param description
      * @returns {Parameter}
      */
-    setDescription = description => {
+    setDescription = (description = '') => {
         this.description = description;
         return this;
     }
@@ -66,7 +76,7 @@ class Parameter {
      * @param required
      * @returns {Parameter}
      */
-    setRequired = required => {
+    setRequired = (required = true) => {
         this.required = required;
         return this;
     }
@@ -75,8 +85,26 @@ class Parameter {
      * @param type
      * @returns {Parameter}
      */
-    setType = type => {
+    setType = (type = PARAMETER_TYPE.QUERY) => {
         this.type = type;
+        return this;
+    }
+
+    /**
+     * @param value
+     * @returns {Parameter}
+     */
+    setValue = (value = false) => {
+        this.value = value;
+        return this;
+    }
+
+    /**
+     * @param model
+     * @returns {Parameter}
+     */
+    setModel = (model = false) => {
+        this.model = model;
         return this;
     }
 };

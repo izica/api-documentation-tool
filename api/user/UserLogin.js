@@ -6,15 +6,25 @@ import {
     REQUEST_TYPE
 } from 'core';
 
-console.log(Request);
 
 class UserLogin extends Request {
-    beforeExecute = () => {
+    init = () => {
         this.setUrl('/user/login')
             .setType(REQUEST_TYPE.POST)
             .addParam(
                 Parameter.create()
+                    .setType(PARAMETER_TYPE.BODY)
+                    .setName('login')
+                    .setDescription('use phone as login')
+                    .setValue('8913543123')
+                    .setModel('User.login')
             )
+            .addParam(
+                Parameter.create()
+                    .setType(PARAMETER_TYPE.BODY)
+                    .setName('password')
+                    .setModel('User.password')
+            );
     }
 }
 
