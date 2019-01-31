@@ -5,14 +5,6 @@ import {
   Route
 } from 'react-router-dom';
 
-import {
-  onError
-} from 'mobx-react';
-
-onError(error => {
-  console.log(error)
-});
-
 import Sidebar from './components/SideBar';
 
 import {
@@ -21,14 +13,13 @@ import {
   SchemaPage
 } from '../pages';
 
-import '../classes'
-
 import './styles/spectre.css';
 import './styles/styles.scss';
 
-import UserAdd from '../../../api/user/add';
+import UserLogin from '../../../api/user/UserLogin';
 
-const userAdd = new UserAdd();
+const userAdd = new UserLogin();
+userAdd.beforeExecute();
 console.log(userAdd);
 
 

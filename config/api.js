@@ -1,4 +1,13 @@
-const config = {
+const api = {
+    baseUrl: '',
+    format: 'default', //xml, json,
+    auth: {
+        username: 'username',
+        password: 'password'
+    },
+    headers: {
+        Authorization: 'Bearer ADSDADSADS'
+    },
     title: 'Title',
     description: {
         type: 'html',
@@ -10,8 +19,8 @@ const config = {
             type: 'html',
             value: `<div>description user</div>`
         },
-        items: [
-
-        ]
+        items: []
     }
 }
+
+export default config;
