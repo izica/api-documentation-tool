@@ -16,13 +16,6 @@ import {
 import './styles/spectre.css';
 import './styles/styles.scss';
 
-import UserLogin from '../../../api/user/UserLogin';
-
-const userAdd = new UserLogin();
-userAdd.init();
-console.log(userAdd);
-
-
 class Layout extends React.Component {
   render = () => {
     return (

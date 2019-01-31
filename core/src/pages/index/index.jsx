@@ -6,7 +6,7 @@ class IndexPage extends React.Component {
     return (
       <div>
         IndexPage
-        <Link to={'/api'}>Api</Link>
+        <Link to={'/api/auth'}>Api</Link>
       </div>
     );
   }

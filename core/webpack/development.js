@@ -47,6 +47,7 @@ module.exports = {
         extensions: ['*', '.js', '.jsx'],
         alias: {
             core: path.resolve(__dirname, '../core'),
+            root$: path.resolve(__dirname, '../../')
         }
     },
 };

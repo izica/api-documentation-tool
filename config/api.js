@@ -1,3 +1,5 @@
+import UserLogin from '../api/user/UserLogin';
+
 const api = {
     baseUrl: '',
     auth: {
@@ -12,14 +14,16 @@ const api = {
         type: 'html',
         value: `<div>description</div>`
     },
-    section: {
-        title: 'User',
-        description: {
-            type: 'html',
-            value: `<div>description user</div>`
-        },
-        items: []
-    }
+    sections: [
+        {
+            url: 'auth',
+            title: 'Auth',
+            description: `<div>description user</div>`,
+            requests: [
+                UserLogin
+            ]
+        }
+    ]
 }
 
-export default config;
+export default api;
