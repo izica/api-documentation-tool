@@ -9,7 +9,11 @@ import cn from 'classnames';
 
 import './styles.scss';
 
-import api from 'root/config/api';
+import api from '../../../../../config/api';
+
+console.log(
+    api
+);
 
 
 @observer

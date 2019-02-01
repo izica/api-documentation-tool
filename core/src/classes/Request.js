@@ -6,6 +6,8 @@ class Request {
     url = '/';
     type = REQUEST_TYPE.GET;
     params = [];
+    title = 'Request title';
+    description = '';
 
     /**
      * @param baseUrl
@@ -31,6 +33,24 @@ class Request {
      */
     setType = (type = REQUEST_TYPE.GET) => {
         this.type = type;
+        return this;
+    };
+
+    /**
+     * @param title
+     * @return {Request}
+     */
+    setTitle = (title = 'Request title') => {
+        this.title = title;
+        return this;
+    };
+
+    /**
+     * @param description
+     * @return {Request}
+     */
+    setDescription = (description = '') => {
+        this.description = description;
         return this;
     };
 
