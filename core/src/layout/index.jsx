@@ -18,11 +18,15 @@ import './styles/styles.scss';
 const Layout = () => (
     <BrowserRouter>
         <div className="layout">
-            <Sidebar />
+            <Sidebar/>
             <div className="layout__content">
-                <Route path="/" exact component={IndexPage} />
-                <Route path="/api" component={ApiPage} />
-                <Route path="/schema" component={SchemaPage} />
+                <div className="columns">
+                    <div className="column col-11 col-mx-auto" style={{ paddingTop: 50 }}>
+                        <Route path="/" exact component={IndexPage}/>
+                        <Route path="/api" component={ApiPage}/>
+                        <Route path="/schema" component={SchemaPage}/>
+                    </div>
+                </div>
             </div>
         </div>
     </BrowserRouter>

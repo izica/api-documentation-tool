@@ -1,31 +1,31 @@
 import { observable } from 'mobx';
 import PARAMETER_TYPE from '../constants/PARAMETER_TYPE';
-import VIEW_TYPE from '../constants/VIEW_TYPE';
+import DATA_TYPE from '../constants/DATA_TYPE';
 
 class Parameter {
     #isLabelSet = false;
     @observable type = PARAMETER_TYPE.QUERY;
-    @observable view = VIEW_TYPE.INPUT;
+    @observable dataType = DATA_TYPE.STRING;
     @observable name = 'name';
     @observable placeholder = '';
     @observable label = 'field';
     @observable description = '';
     @observable required = false;
-    @observable value = false;
+    @observable value = '';
     @observable model = false;
     @observable readonly = false;
 
     /**
      * @returns {Parameter}
      */
-    create = () => new Parameter()
+    create = () => new Parameter();
 
     /**
-     * @param view
+     * @param dataType
      * @returns {Parameter}
      */
-    setView = (view = VIEW_TYPE.INPUT) => {
-        this.view = view;
+    setDataType = (dataType = DATA_TYPE.STRING) => {
+        this.dataType = dataType;
         return this;
     }
 
@@ -100,7 +100,7 @@ class Parameter {
      * @param value
      * @returns {Parameter}
      */
-    setValue = (value = false) => {
+    setValue = (value = '') => {
         this.value = value;
         return this;
     }

@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
+import { computed } from 'mobx';
+
+import './styles.scss';
+import Input from "./components/Input";
 
 @observer
 class Control extends React.Component {
@@ -8,12 +12,37 @@ class Control extends React.Component {
         parameter: PropTypes.object
     };
 
+    @computed
+    get control() {
+        const { parameter } = this.props;
+
+        return <Input parameter={parameter}/>
+    }
+
+    @computed
+    get label() {
+        const { parameter } = this.props;
+        if (parameter.required) {
+            return (
+                <b>
+                    {parameter.label}
+                    <span>*</span>
+                </b>
+            );
+        }
+
+        return parameter.label;
+    }
+
     render = () => {
+        const { parameter } = this.props;
         return (
-            <div className="form-group">
-                <label className="form-label" htmlFor="input-example-1">Name</label>
-                <input className="form-input" type="text" id="input-example-1" placeholder="Name"/>
-            </div>
+            <tr className="control">
+                <td>{this.label}</td>
+                <td>{this.control}</td>
+                <td>{parameter.description}</td>
+                <td>{parameter.dataType}</td>
+            </tr>
         )
     }
 }

@@ -122,7 +122,7 @@ textarea.form-input {
   padding: $control-padding-y $control-padding-x;
   vertical-align: middle;
   width: 100%;
-  background: $bg-color-light; 
+  background: $bg-color-light;
   &:focus {
     @include control-shadow();
     border-color: $primary-color;
@@ -484,21 +484,21 @@ textarea.form-input {
 }
 
 // validation based on :placeholder-shown (Edge doesn't support it yet)
-.form-input {
-  &:not(:placeholder-shown) {
-    &:invalid {
-      border-color: $error-color;
-      &:focus {
-        @include control-shadow($error-color);
-        background: lighten($error-color, 53%);
-      }
-
-      & + .form-input-hint {
-        color: $error-color;
-      }
-    }
-  }
-}
+//.form-input {
+//  &:not(:placeholder-shown) {
+//    &:invalid {
+//      border-color: $error-color;
+//      &:focus {
+//        @include control-shadow($error-color);
+//        background: lighten($error-color, 53%);
+//      }
+//
+//      & + .form-input-hint {
+//        color: $error-color;
+//      }
+//    }
+//  }
+//}
 
 // Form disabled and readonly
 .form-input,

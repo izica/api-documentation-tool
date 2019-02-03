@@ -16,7 +16,13 @@ class ApiSection extends React.Component {
                 <div style={{marginBottom: 10}}>
                     {renderHTML(section.description)}
                 </div>
-                {section.requests.map(request => <ApiRequest key={`ApiSection${request.name}`} request={request}/>)}
+                {section.requests.map(request => (
+                    <ApiRequest
+                        key={`ApiSection${request.name}`}
+                        request={request}
+                        section={section}
+                    />
+                ))}
             </React.Fragment>
         )
     }

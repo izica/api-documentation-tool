@@ -6,7 +6,7 @@
 
   &[data-content]::after {
     background: $bg-color-light;
-    color: $gray-color;
+    color: #525863; //$gray-color;
     content: attr(data-content);
     display: inline-block;
     font-size: $font-size-sm;

@@ -5,7 +5,7 @@ import Control from "../Control";
 import Controls from "../Controls";
 
 @observer
-class Body extends React.Component {
+class Headers extends React.Component {
     static propTypes = {
         request: PropTypes.any
     };
@@ -13,16 +13,16 @@ class Body extends React.Component {
     render = () => {
         const { request } = this.props;
 
-        if (request.body.length === 0) {
+        if (request.headers.length === 0) {
             return null;
         }
-        const key = `Body${request.type}${request.url}`;
+        const key = `Headers${request.type}${request.url}`;
         return (
             <React.Fragment>
-                <div className="divider" data-content="Body"/>
+                <div className="divider" data-content="Headers"/>
                 <div className="api-request__block">
                     <Controls>
-                        {request.body.map(parameter => (
+                        {request.headers.map(parameter => (
                             <Control
                                 key={key+parameter.name}
                                 parameter={parameter}
@@ -35,4 +35,4 @@ class Body extends React.Component {
     }
 }
 
-export default Body;
+export default Headers;

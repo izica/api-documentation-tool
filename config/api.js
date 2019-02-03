@@ -1,5 +1,6 @@
-import ProjectsList from '../api/projects/List';
-import ProjectsDetail from '../api/projects/Detail';
+import ProjectList from '../api/project/List';
+import ProjectDetail from '../api/project/Detail';
+import ProjectSave from '../api/project/Save';
 
 const api = {
     baseUrl: 'http://avtodom-phalcon/api/v2',
@@ -8,7 +9,7 @@ const api = {
         password: 'password'
     },
     headers: {
-        Authorization: 'Bearer ADSDADSADS1'
+        Authorization: 'Bearer ADSDADSADS1',
     },
     title: 'Title',
     description: `
@@ -22,8 +23,9 @@ const api = {
             title: 'Projects',
             description: `<div>Work with <b>Projects</b></div>`,
             requests: [
-                ProjectsList,
-                ProjectsDetail
+                ProjectList,
+                ProjectDetail,
+                ProjectSave
             ]
         }
     ]
