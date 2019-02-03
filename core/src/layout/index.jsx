@@ -12,7 +12,7 @@ import {
     SchemaPage,
 } from '../pages';
 
-import './styles/spectre.css';
+import './styles/spectre/spectre.scss';
 import './styles/styles.scss';
 
 const Layout = () => (

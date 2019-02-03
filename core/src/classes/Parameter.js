@@ -1,27 +1,19 @@
+import { observable } from 'mobx';
 import PARAMETER_TYPE from '../constants/PARAMETER_TYPE';
 import VIEW_TYPE from '../constants/VIEW_TYPE';
 
 class Parameter {
     #isLabelSet = false;
-
-    type = PARAMETER_TYPE.QUERY;
-
-    view = VIEW_TYPE.INPUT;
-
-    name = 'name';
-
-    placeholder = '';
-
-    label = 'field';
-
-    description = '';
-
-    required = false;
-
-    value = false;
-
-    model = false;
-
+    @observable type = PARAMETER_TYPE.QUERY;
+    @observable view = VIEW_TYPE.INPUT;
+    @observable name = 'name';
+    @observable placeholder = '';
+    @observable label = 'field';
+    @observable description = '';
+    @observable required = false;
+    @observable value = false;
+    @observable model = false;
+    @observable readonly = false;
 
     /**
      * @returns {Parameter}
@@ -83,6 +75,15 @@ class Parameter {
      */
     setRequired = (required = true) => {
         this.required = required;
+        return this;
+    }
+
+    /**
+     * @param readonly
+     * @returns {Parameter}
+     */
+    setReadonly = (readonly = true) => {
+        this.readonly = readonly;
         return this;
     }
 

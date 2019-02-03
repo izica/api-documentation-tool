@@ -1,7 +1,8 @@
-import UserLogin from '../api/user/UserLogin';
+import ProjectsList from '../api/projects/List';
+import ProjectsDetail from '../api/projects/Detail';
 
 const api = {
-    baseUrl: '',
+    baseUrl: 'http://avtodom-phalcon/api/v2',
     auth: {
         username: 'username',
         password: 'password'
@@ -10,17 +11,19 @@ const api = {
         Authorization: 'Bearer ADSDADSADS1'
     },
     title: 'Title',
-    description: {
-        type: 'html',
-        value: `<div>description</div>`
-    },
+    description: `
+        <div>
+            description <b>bold</b>
+        </div>
+    `,
     sections: [
         {
-            url: 'auth',
-            title: 'Auth',
-            description: `<div>description user</div>`,
+            id: 'projects',
+            title: 'Projects',
+            description: `<div>Work with <b>Projects</b></div>`,
             requests: [
-                UserLogin
+                ProjectsList,
+                ProjectsDetail
             ]
         }
     ]

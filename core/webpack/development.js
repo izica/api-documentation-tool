@@ -22,14 +22,19 @@ module.exports = {
             clearConsole: true,
         }),
     ],
+    devtool: "eval-source-map",
     module: {
         rules: [
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: [
-                    'babel-loader',
-
+                    {
+                        loader: "babel-loader",
+                        options: {
+                            sourceMap: true
+                        }
+                    },
                 ],
             },
             {
@@ -47,8 +52,19 @@ module.exports = {
                 exclude: /node_modules/,
                 use: [
                     'style-loader',
-                    'css-loader',
-                    'sass-loader',
+                    {
+                        loader: "css-loader",
+                        options: {
+                            sourceMap: true,
+                            url: false
+                        }
+                    },
+                    {
+                        loader: "sass-loader",
+                        options: {
+                            sourceMap: true
+                        }
+                    },
                 ],
             },
         ],
@@ -56,8 +72,9 @@ module.exports = {
     resolve: {
         extensions: ['*', '.js', '.jsx'],
         alias: {
-            core: path.resolve(__dirname, '../core'),
-            components: path.resolve(__dirname, '../src/components'),
+            'core': path.resolve(__dirname, '../core'),
+            'components': path.resolve(__dirname, '../src/components'),
+            'config': path.resolve(__dirname, '../../config'),
         },
     },
 };

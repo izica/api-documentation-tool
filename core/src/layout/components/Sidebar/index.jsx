@@ -5,12 +5,12 @@ import {
 import { observer } from 'mobx-react';
 import { Template } from 'components';
 
+import api from 'config/api';
+
 import SidebarTabButtons from '../SidebarTabButtons';
 import SidebarSection from '../SidebarSection';
 
 import './styles.scss';
-
-import api from '../../../../../config/api';
 
 // eslint-disable-next-line
 console.log(api);

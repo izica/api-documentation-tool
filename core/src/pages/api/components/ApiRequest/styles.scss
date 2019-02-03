@@ -1,0 +1,16 @@
+.api-request {
+    margin-bottom: 10px;
+    &__header {
+        border-bottom: 0.05rem solid #dadee4;
+    }
+
+    &__title{
+        margin-bottom: 0;
+        margin-top: 2px;
+    }
+
+    &__block {
+        flex: 0 0 auto;
+        padding: 0 0.8rem 0.8rem 0.8rem;
+    }
+}

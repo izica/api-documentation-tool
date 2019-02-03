@@ -11,6 +11,8 @@
     "rules": {
         "indent": ["error", 4],
         "comma-dangle": 0,
+        "no-console": 0,
+        "new-cap": 0,
         "quotes": ["error", "single", { "allowTemplateLiterals": true }],
         "func-names": ["error", "never"],
         "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
@@ -19,6 +21,8 @@
         "import/prefer-default-export": [0, "never"],
         "import/no-unresolved": [0, "never"],
         "jsx-a11y/anchor-is-valid": [0, "never"],
+        "jsx-a11y/label-has-associated-control": [0, "never"],
+        "jsx-a11y/label-has-for": [0, "never"],
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "react/require-default-props": [0, "never"],
         "react/jsx-uses-react": 1,
