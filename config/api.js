@@ -4,13 +4,6 @@ import ProjectSave from '../api/project/Save';
 
 const api = {
     baseUrl: 'http://avtodom-phalcon/api/v2',
-    auth: {
-        username: 'username',
-        password: 'password'
-    },
-    headers: {
-        Authorization: 'Bearer ADSDADSADS1',
-    },
     title: 'Title',
     description: `
         <div>

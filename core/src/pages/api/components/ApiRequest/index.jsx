@@ -57,7 +57,7 @@ class ApiRequest extends React.Component {
                 <div className="api-request__url">
                     <h6>{this.fullUrl}</h6>
                     <Template visible={this.request.description !== ''}>
-                        <h7>{renderHTML(this.request.description)}</h7>
+                        {renderHTML(this.request.description)}
                     </Template>
                 </div>
                 <form onSubmit={e => e.preventDefault()}>

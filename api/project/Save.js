@@ -17,7 +17,9 @@ class Save extends Request {
             .addParam(
                 Parameter.create()
                     .setType(PARAMETER_TYPE.HEADER)
-                    .setName('Token')
+                    .setPlaceholder('Bearer Token')
+                    .setDescription('token from /user/login')
+                    .setName('Authorization')
             )
             .addParam(
                 Parameter.create()
@@ -37,13 +39,41 @@ class Save extends Request {
                 Parameter.create()
                     .setType(PARAMETER_TYPE.BODY)
                     .setDataType(DATA_TYPE.NUMBER)
-                    .setName('name')
+                    .setName('id')
                     .setRequired()
             )
             .addParam(
                 Parameter.create()
                     .setType(PARAMETER_TYPE.BODY)
                     .setName('email')
+            )
+            .addParam(
+                Parameter.create()
+                    .setType(PARAMETER_TYPE.BODY)
+                    .setDataType(DATA_TYPE.FILE)
+                    .setName('photo')
+                    .setRequired()
+            )
+            .addParam(
+                Parameter.create()
+                    .setType(PARAMETER_TYPE.BODY)
+                    .setDataType(DATA_TYPE.DATE)
+                    .setName('date')
+                    .setRequired()
+            )
+            .addParam(
+                Parameter.create()
+                    .setType(PARAMETER_TYPE.BODY)
+                    .setDataType(DATA_TYPE.BOOLEAN)
+                    .setName('enabled')
+                    .setRequired()
+            )
+            .addParam(
+                Parameter.create()
+                    .setType(PARAMETER_TYPE.BODY)
+                    .setName('color')
+                    .setOptions(['#fff', '#ddd', 'red'])
+                    .setRequired()
             )
     }
 }

@@ -14,6 +14,7 @@ class Parameter {
     @observable value = '';
     @observable model = false;
     @observable readonly = false;
+    @observable options = [];
 
     /**
      * @returns {Parameter}
@@ -111,6 +112,25 @@ class Parameter {
      */
     setModel = (model = false) => {
         this.model = model;
+        return this;
+    }
+
+    setOptions = (options) => {
+        if (Array.isArray(options)) {
+            options.forEach(option => {
+                this.options.push({
+                    id: option,
+                    value: option
+                });
+            });
+        } else {
+            Object.keys(options).forEach(key => {
+                this.options.push({
+                    id: key,
+                    value: options[key]
+                });
+            });
+        }
         return this;
     }
 }

@@ -16,6 +16,9 @@ class Input extends React.Component {
         if (parameter.dataType === DATA_TYPE.NUMBER) {
             return 'number';
         }
+        if (parameter.dataType === DATA_TYPE.FILE) {
+            return 'file';
+        }
         return 'text';
     }
 
