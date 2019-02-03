@@ -1,12 +1,17 @@
-import REQUEST_TYPE from "../constants/REQUEST_TYPE";
+import REQUEST_TYPE from '../constants/REQUEST_TYPE';
 import Parameter from './Parameter';
 
 class Request {
     baseUrl = null;
+
     url = '/';
+
     type = REQUEST_TYPE.GET;
+
     params = [];
+
     title = 'Request title';
+
     description = '';
 
     /**
@@ -62,6 +67,6 @@ class Request {
         this.params.push(param);
         return this;
     };
-};
+}
 
 export default Request;

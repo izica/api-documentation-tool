@@ -33,6 +33,16 @@ module.exports = {
                 ],
             },
             {
+                enforce: 'pre',
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                loader: 'eslint-loader',
+                options: {
+                    emitWarning: true,
+                    fix: true
+                },
+            },
+            {
                 test: /\.(css|scss)$/,
                 exclude: /node_modules/,
                 use: [
@@ -47,6 +57,7 @@ module.exports = {
         extensions: ['*', '.js', '.jsx'],
         alias: {
             core: path.resolve(__dirname, '../core'),
-        }
+            components: path.resolve(__dirname, '../src/components'),
+        },
     },
 };

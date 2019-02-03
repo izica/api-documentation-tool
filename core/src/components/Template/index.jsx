@@ -1,8 +1,17 @@
+import PropTypes from 'prop-types';
+
 const Template = ({ visible, children }) => {
-  if (!visible) {
+    if (!visible) {
+        return null;
+    }
+    if (children) {
+        return children;
+    }
     return null;
-  }
-  return children;
+};
+
+Template.propTypes = {
+    visible: PropTypes.bool
 };
 
 export default Template;

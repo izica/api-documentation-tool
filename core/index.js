@@ -5,8 +5,8 @@ import ReactDOM from 'react-dom';
 import Layout from './src/layout';
 
 ReactDOM.render(
-  <Layout />,
-  document.getElementById('app'),
+    <Layout />,
+    document.getElementById('app'),
 );
 
 module.hot.accept();

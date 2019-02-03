@@ -1,13 +1,11 @@
 import React from 'react';
-import { observer } from "mobx-react";
+import { observer } from 'mobx-react';
 
 @observer
 class ApiPage extends React.Component {
-    render = () => {
-        return (
-            <div>Api</div>
-        );
-    }
+    render = () => (
+        <div>Api</div>
+    )
 }
 
-export default ApiPage
+export default ApiPage;

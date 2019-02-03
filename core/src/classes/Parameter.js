@@ -1,27 +1,32 @@
-import PARAMETER_TYPE from "../constants/PARAMETER_TYPE";
-import VIEW_TYPE from "../constants/VIEW_TYPE";
+import PARAMETER_TYPE from '../constants/PARAMETER_TYPE';
+import VIEW_TYPE from '../constants/VIEW_TYPE';
 
 class Parameter {
     #isLabelSet = false;
 
     type = PARAMETER_TYPE.QUERY;
+
     view = VIEW_TYPE.INPUT;
-    name = "name";
+
+    name = 'name';
+
     placeholder = '';
+
     label = 'field';
+
     description = '';
+
     required = false;
+
     value = false;
+
     model = false;
 
 
     /**
      * @returns {Parameter}
      */
-    create = () => {
-        console.log(this.#isLabelSet);
-        return new Parameter();
-    }
+    create = () => new Parameter()
 
     /**
      * @param view
@@ -37,7 +42,7 @@ class Parameter {
      * @returns {Parameter}
      */
     setName = (name = 'name') => {
-        if(this.#isLabelSet === false){
+        if (this.#isLabelSet === false) {
             this.label = name.charAt(0).toUpperCase() + name.slice(1);
         }
         this.name = name;
@@ -107,6 +112,6 @@ class Parameter {
         this.model = model;
         return this;
     }
-};
+}
 
 export default new Parameter();

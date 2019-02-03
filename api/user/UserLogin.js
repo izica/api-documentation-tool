@@ -2,7 +2,6 @@ import {
     Request,
     Parameter,
     PARAMETER_TYPE,
-    VIEW_TYPE,
     REQUEST_TYPE
 } from 'core';
 
@@ -10,6 +9,7 @@ import {
 class UserLogin extends Request {
     init = () => {
         this.setUrl('/user/login')
+            .setTitle('Login')
             .setType(REQUEST_TYPE.POST)
             .addParam(
                 Parameter.create()

@@ -7,7 +7,7 @@ const api = {
         password: 'password'
     },
     headers: {
-        Authorization: 'Bearer ADSDADSADS'
+        Authorization: 'Bearer ADSDADSADS1'
     },
     title: 'Title',
     description: {
@@ -24,6 +24,6 @@ const api = {
             ]
         }
     ]
-}
+};
 
 export default api;
