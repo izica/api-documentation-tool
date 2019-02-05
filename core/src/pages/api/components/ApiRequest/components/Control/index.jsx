@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import { computed } from 'mobx';
+import { DATA_TYPE, PARAMETER_TYPE } from "core";
+
+import Input from "./components/Input";
+import Datepicker from "./components/Datepicker";
 
 import './styles.scss';
-import Input from "./components/Input";
-import { DATA_TYPE, PARAMETER_TYPE } from "core";
 
 @observer
 class Control extends React.Component {
@@ -23,12 +25,15 @@ class Control extends React.Component {
         if (parameter.options.length > 0) {
             return 'Select';
         }
+
         if (parameter.dataType === DATA_TYPE.DATE) {
-            return 'Datepicker';
+            return <Datepicker parameter={parameter}/>;
         }
+
         if (parameter.dataType === DATA_TYPE.BOOLEAN) {
             return 'Checkbox';
         }
+
         return <Input parameter={parameter}/>
     }
 

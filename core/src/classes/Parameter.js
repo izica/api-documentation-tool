@@ -3,17 +3,19 @@ import PARAMETER_TYPE from '../constants/PARAMETER_TYPE';
 import DATA_TYPE from '../constants/DATA_TYPE';
 
 class Parameter {
-    #isLabelSet = false;
+    @observable _isLabelSet = false;
+
     @observable type = PARAMETER_TYPE.QUERY;
     @observable dataType = DATA_TYPE.STRING;
+    @observable dataFormat = '';
     @observable name = 'name';
     @observable placeholder = '';
     @observable label = 'field';
     @observable description = '';
     @observable required = false;
-    @observable value = '';
     @observable model = false;
     @observable readonly = false;
+    @observable value = null;
     @observable options = [];
 
     /**
@@ -23,10 +25,13 @@ class Parameter {
 
     /**
      * @param dataType
+     * @param dataFormat
      * @returns {Parameter}
      */
-    setDataType = (dataType = DATA_TYPE.STRING) => {
+    setDataType = (dataType = DATA_TYPE.STRING, dataFormat = '') => {
         this.dataType = dataType;
+        this.dataFormat = dataFormat;
+
         return this;
     }
 
@@ -35,7 +40,7 @@ class Parameter {
      * @returns {Parameter}
      */
     setName = (name = 'name') => {
-        if (this.#isLabelSet === false) {
+        if (this._isLabelSet === false) {
             this.label = name.charAt(0).toUpperCase() + name.slice(1);
         }
         this.name = name;
@@ -56,7 +61,7 @@ class Parameter {
      * @returns {Parameter}
      */
     setLabel = (label = 'field') => {
-        this.#isLabelSet = true;
+        this._isLabelSet = true;
         this.label = label;
         return this;
     }
@@ -101,7 +106,7 @@ class Parameter {
      * @param value
      * @returns {Parameter}
      */
-    setValue = (value = '') => {
+    setValue = (value = null) => {
         this.value = value;
         return this;
     }
