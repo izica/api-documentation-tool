@@ -1,15 +1,17 @@
 .api-request {
     margin-bottom: 10px;
+
     &__header {
+        position: relative;
         border-bottom: 0.05rem solid #dadee4;
     }
 
-    &__title{
+    &__title {
         margin-bottom: 0;
         margin-top: 2px;
     }
 
-    &__url{
+    &__url {
         padding: 0.8rem;
 
     }
@@ -17,5 +19,12 @@
     &__block {
         flex: 0 0 auto;
         padding: 0 0.8rem 0.8rem 0.8rem;
+    }
+
+    &__open {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
     }
 }

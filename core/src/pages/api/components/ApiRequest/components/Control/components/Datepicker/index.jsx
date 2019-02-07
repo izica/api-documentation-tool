@@ -5,9 +5,7 @@ import { computed } from 'mobx';
 import moment from 'moment';
 import DatePicker from "react-datepicker";
 
-import { DATA_TYPE } from "core";
-
-import "./styles.scss";
+import "./styles/datepicker.scss";
 
 @observer
 class Datepicker extends React.Component {
@@ -18,19 +16,19 @@ class Datepicker extends React.Component {
     @computed
     get value() {
         const { parameter } = this.props;
-        if(!parameter.value){
+        if (!parameter.value) {
             return null;
         }
-        return parameter.value;
+        return moment(parameter.value);
     }
 
     handleChange = (value) => {
         const { parameter } = this.props;
-        console.log(value);
-        if(!value){
-            parameter.value = '';
-        }else{
-            parameter.value = value;
+
+        if (value === null) {
+            parameter.value = null;
+        } else {
+            parameter.value = value.format(parameter.dataFormat);
         }
     }
 
@@ -45,7 +43,7 @@ class Datepicker extends React.Component {
                 onChange={this.handleChange}
                 required={parameter.required}
                 readOnly={parameter.readonly}
-                dateFormat="Y-M-D"
+                dateFormat={parameter.dataFormat}
                 isClearable
             />
         )

@@ -1,7 +1,7 @@
 import REQUEST_TYPE from '../constants/REQUEST_TYPE';
 import REQUEST_FORMAT from '../constants/REQUEST_FORMAT';
 import PARAMETER_TYPE from '../constants/PARAMETER_TYPE';
-import Parameter from './Parameter';
+import RequestParameter from './RequestParameter';
 // import api from 'config/api';
 // import axios from 'axios';
 
@@ -78,20 +78,67 @@ class Request {
     };
 
     /**
+     * @param options
+     * @return {RequestParameter}
+     */
+    createParameter = (options = {}) => {
+        const parameter = new RequestParameter();
+
+        if (options.type !== undefined) {
+            parameter.setType(options.type);
+        }
+        if (options.dataType !== undefined) {
+            if(options.dataFormat !== undefined){
+                parameter.setDataType(options.dataType, options.dataFormat);
+            }else{
+                parameter.setDataType(options.dataType);
+            }
+        }
+        if (options.dataType !== undefined) {
+            parameter.setDataType(options.dataType);
+        }
+        if (options.name !== undefined) {
+            parameter.setName(options.name);
+        }
+        if (options.placeholder !== undefined) {
+            parameter.setPlaceholder(options.placeholder);
+        }
+        if (options.label !== undefined) {
+            parameter.setLabel(options.label);
+        }
+        if (options.description !== undefined) {
+            parameter.setDescription(options.label);
+        }
+        if (options.required !== undefined) {
+            parameter.setRequired(options.required);
+        }
+        if (options.model !== undefined) {
+            parameter.setModel(options.model);
+        }
+        if (options.readonly !== undefined) {
+            parameter.setReadonly(options.readonly);
+        }
+        if (options.value !== undefined) {
+            parameter.setValue(options.value);
+        }
+        if (options.options !== undefined) {
+            parameter.setOptions(options.options);
+        }
+        return parameter;
+    }
+
+    /**
      * @param param
      * @returns {Request}
      */
-    addParam = (param = Parameter.create()) => {
-        if(param.type === PARAMETER_TYPE.RAW){
-            this.raw = param;
-        }
-        switch (param.type){
+    addParameter = (param = new RequestParameter()) => {
+        switch (param.type) {
             case PARAMETER_TYPE.RAW:
                 this.isRaw = true;
                 this.body = [param];
                 break;
             case PARAMETER_TYPE.BODY:
-                if(this.isRaw === false){
+                if (this.isRaw === false) {
                     this.body.push(param);
                 }
                 break;

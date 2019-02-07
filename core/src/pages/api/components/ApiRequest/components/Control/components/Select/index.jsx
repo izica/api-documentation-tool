@@ -5,7 +5,7 @@ import { computed } from 'mobx';
 import { DATA_TYPE } from "core";
 
 @observer
-class Input extends React.Component {
+class Select extends React.Component {
     static propTypes = {
         parameter: PropTypes.object
     };
@@ -25,7 +25,7 @@ class Input extends React.Component {
     @computed
     get value() {
         const { parameter } = this.props;
-        if (!parameter.value) {
+        if (parameter.value === null) {
             return '';
         }
         return parameter.value;
@@ -33,28 +33,33 @@ class Input extends React.Component {
 
     handleChange = (e) => {
         const { parameter } = this.props;
-        if (e.target.value === '') {
+        if(e.target.value === ''){
             parameter.value = null;
-        } else {
+        }else{
             parameter.value = e.target.value
         }
+        console.log(parameter.value);
     }
 
     render = () => {
         const { parameter } = this.props;
         return (
-            <input
+            <select
                 className="form-input"
                 name={parameter.name}
-                type={this.type}
-                placeholder={parameter.placeholder}
                 value={this.value}
                 onChange={this.handleChange}
                 required={parameter.required}
-                readOnly={parameter.readonly}
-            />
+            >
+                <option value="">choose option</option>
+                {parameter.options.map(option => {
+                    return (
+                        <option key={`Select${option.id}`} value={option.id}>{option.value}</option>
+                    )
+                })}
+            </select>
         )
     }
 }
 
-export default Input;
+export default Select;

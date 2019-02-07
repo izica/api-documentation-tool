@@ -8,6 +8,9 @@
     "extends": [
         "airbnb"
     ],
+    "env": {
+        "browser": true
+    },
     "rules": {
         "indent": ["error", 4],
         "comma-dangle": 0,

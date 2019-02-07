@@ -1,6 +1,5 @@
 import {
     Request,
-    Parameter,
     PARAMETER_TYPE,
     REQUEST_TYPE,
     REQUEST_FORMAT
@@ -11,14 +10,16 @@ class Detail extends Request {
         this.setUrl('/projects/get')
             .setTitle('Project by id')
             .setType(REQUEST_TYPE.POST)
-            .setFormat(REQUEST_FORMAT.JSON)
-            .addParam(
-                Parameter.create()
-                    .setType(PARAMETER_TYPE.BODY)
-                    .setName('id')
-                    .setModel('Project.id')
-                    .setRequired()
-            );
+            .setFormat(REQUEST_FORMAT.JSON);
+
+        const id = this.createParameter()
+            .setType(PARAMETER_TYPE.BODY)
+            .setName('id')
+            .setModel('Project.id')
+            .setRequired();
+
+        this.addParameter(id);
+
     }
 }
 

@@ -18,7 +18,7 @@ const api = {
             requests: [
                 ProjectList,
                 ProjectDetail,
-                ProjectSave
+                ProjectSave,
             ]
         }
     ]

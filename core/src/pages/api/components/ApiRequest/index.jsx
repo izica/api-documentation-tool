@@ -4,6 +4,7 @@ import { observer } from 'mobx-react';
 import { observable, computed } from 'mobx';
 import { Request } from 'core';
 import renderHTML from 'react-render-html';
+import { withRouter } from 'react-router-dom';
 
 import Badge from './components/Badge';
 import Body from "./components/Body";
@@ -15,21 +16,33 @@ import api from 'config/api'
 import './styles.scss';
 import Template from "../../../../components/Template";
 
+@withRouter
 @observer
 class ApiRequest extends React.Component {
     static propTypes = {
         section: PropTypes.object,
         request: PropTypes.func,
+        history: PropTypes.object
     };
 
     @observable request = new Request();
+    @observable isOpened = false;
 
     componentDidMount = () => {
-        const { request } = this.props;
+        const { request, history } = this.props;
         const item = new request();
         item.init();
         this.request = item;
+
+        this.openByHash(window.location.hash);
+        history.listen(location => this.openByHash(location.hash));
     };
+
+    @computed
+    get hash() {
+        const { section, request } = this.props;
+        return `${section.id}.${request.name}`;
+    }
 
     @computed
     get fullUrl() {
@@ -41,11 +54,15 @@ class ApiRequest extends React.Component {
         return url + params;
     }
 
-    render = () => {
-        const { section, request } = this.props;
+    openByHash = (hash) => {
+        if(this.isOpened === false){
+            this.isOpened = '#' + this.hash === hash;
+        }
+    }
 
+    render = () => {
         return (
-            <div className="panel api-request" id={`${section.id}.${request.name}`}>
+            <div className="panel api-request" id={this.hash}>
                 <div className="panel-header api-request__header">
                     <div className="d-flex">
                         <Badge type={this.request.type}/>
@@ -53,21 +70,33 @@ class ApiRequest extends React.Component {
                             {this.request.title}
                         </h5>
                     </div>
-                </div>
-                <div className="api-request__url">
-                    <h6>{this.fullUrl}</h6>
-                    <Template visible={this.request.description !== ''}>
-                        {renderHTML(this.request.description)}
-                    </Template>
-                </div>
-                <form onSubmit={e => e.preventDefault()}>
-                    <Headers request={this.request}/>
-                    <Query request={this.request}/>
-                    <Body request={this.request}/>
-                    <div className="api-request__block">
-                        <button type="submit" className="btn">Send request</button>
+                    <div className="api-request__open">
+                        <button
+                            type="button"
+                            onClick={() => {
+                                this.isOpened = !this.isOpened
+                            }}
+                            className="btn btn-primary btn-action btn-sm">
+                            <i className={this.isOpened ? "icon icon-arrow-up" : "icon icon-arrow-down"}/>
+                        </button>
                     </div>
-                </form>
+                </div>
+                <Template visible={this.isOpened}>
+                    <div className="api-request__url">
+                        <h6>{this.fullUrl}</h6>
+                        <Template visible={this.request.description !== ''}>
+                            {renderHTML(this.request.description)}
+                        </Template>
+                    </div>
+                    <form onSubmit={e => e.preventDefault()}>
+                        <Headers request={this.request}/>
+                        <Query request={this.request}/>
+                        <Body request={this.request}/>
+                        <div className="api-request__block">
+                            <button type="submit" className="btn">Send request</button>
+                        </div>
+                    </form>
+                </Template>
             </div>
         )
     }

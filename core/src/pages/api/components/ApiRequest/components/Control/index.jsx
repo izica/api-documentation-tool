@@ -6,8 +6,11 @@ import { DATA_TYPE, PARAMETER_TYPE } from "core";
 
 import Input from "./components/Input";
 import Datepicker from "./components/Datepicker";
+import Select from "./components/Select";
 
 import './styles.scss';
+import Checkbox from "./components/Checkbox";
+import Filepicker from "./components/Filepicker";
 
 @observer
 class Control extends React.Component {
@@ -23,7 +26,11 @@ class Control extends React.Component {
         }
 
         if (parameter.options.length > 0) {
-            return 'Select';
+            return <Select parameter={parameter}/>;
+        }
+
+        if (parameter.dataType === DATA_TYPE.FILE) {
+            return <Filepicker parameter={parameter}/>;
         }
 
         if (parameter.dataType === DATA_TYPE.DATE) {
@@ -31,7 +38,7 @@ class Control extends React.Component {
         }
 
         if (parameter.dataType === DATA_TYPE.BOOLEAN) {
-            return 'Checkbox';
+            return <Checkbox parameter={parameter}/>;
         }
 
         return <Input parameter={parameter}/>

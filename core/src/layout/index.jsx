@@ -13,6 +13,7 @@ import {
 } from '../pages';
 
 import './styles/spectre/spectre.scss';
+import './styles/spectre/spectre-icons.scss';
 import './styles/styles.scss';
 
 const Layout = () => (

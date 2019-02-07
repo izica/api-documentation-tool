@@ -2,7 +2,7 @@ import { observable } from 'mobx';
 import PARAMETER_TYPE from '../constants/PARAMETER_TYPE';
 import DATA_TYPE from '../constants/DATA_TYPE';
 
-class Parameter {
+class RequestParameter {
     @observable _isLabelSet = false;
 
     @observable type = PARAMETER_TYPE.QUERY;
@@ -19,25 +19,30 @@ class Parameter {
     @observable options = [];
 
     /**
-     * @returns {Parameter}
-     */
-    create = () => new Parameter();
-
-    /**
      * @param dataType
      * @param dataFormat
-     * @returns {Parameter}
+     * @returns {RequestParameter}
      */
     setDataType = (dataType = DATA_TYPE.STRING, dataFormat = '') => {
         this.dataType = dataType;
-        this.dataFormat = dataFormat;
 
+        if (dataFormat === false) {
+            switch (dataType) {
+                case DATA_TYPE.DATE:
+                    this.dataFormat = 'Y-M-D';
+                    break;
+                case DATA_TYPE.FILE:
+                    this.dataFormat = '*';
+                    break;
+                default:
+            }
+        }
         return this;
     }
 
     /**
      * @param name
-     * @returns {Parameter}
+     * @returns {RequestParameter}
      */
     setName = (name = 'name') => {
         if (this._isLabelSet === false) {
@@ -49,7 +54,7 @@ class Parameter {
 
     /**
      * @param placeholder
-     * @returns {Parameter}
+     * @returns {RequestParameter}
      */
     setPlaceholder = (placeholder = '') => {
         this.placeholder = placeholder;
@@ -58,7 +63,7 @@ class Parameter {
 
     /**
      * @param label
-     * @returns {Parameter}
+     * @returns {RequestParameter}
      */
     setLabel = (label = 'field') => {
         this._isLabelSet = true;
@@ -68,7 +73,7 @@ class Parameter {
 
     /**
      * @param description
-     * @returns {Parameter}
+     * @returns {RequestParameter}
      */
     setDescription = (description = '') => {
         this.description = description;
@@ -77,7 +82,7 @@ class Parameter {
 
     /**
      * @param required
-     * @returns {Parameter}
+     * @returns {RequestParameter}
      */
     setRequired = (required = true) => {
         this.required = required;
@@ -86,7 +91,7 @@ class Parameter {
 
     /**
      * @param readonly
-     * @returns {Parameter}
+     * @returns {RequestParameter}
      */
     setReadonly = (readonly = true) => {
         this.readonly = readonly;
@@ -95,7 +100,7 @@ class Parameter {
 
     /**
      * @param type
-     * @returns {Parameter}
+     * @returns {RequestParameter}
      */
     setType = (type = PARAMETER_TYPE.QUERY) => {
         this.type = type;
@@ -104,7 +109,7 @@ class Parameter {
 
     /**
      * @param value
-     * @returns {Parameter}
+     * @returns {RequestParameter}
      */
     setValue = (value = null) => {
         this.value = value;
@@ -113,7 +118,7 @@ class Parameter {
 
     /**
      * @param model
-     * @returns {Parameter}
+     * @returns {RequestParameter}
      */
     setModel = (model = false) => {
         this.model = model;
@@ -140,4 +145,4 @@ class Parameter {
     }
 }
 
-export default new Parameter();
+export default RequestParameter;

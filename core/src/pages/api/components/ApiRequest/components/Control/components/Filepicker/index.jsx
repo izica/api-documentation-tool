@@ -2,25 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import { computed } from 'mobx';
-import { DATA_TYPE } from "core";
 
 @observer
-class Input extends React.Component {
+class Filepicker extends React.Component {
     static propTypes = {
         parameter: PropTypes.object
     };
-
-    @computed
-    get type() {
-        const { parameter } = this.props;
-        if (parameter.dataType === DATA_TYPE.NUMBER) {
-            return 'number';
-        }
-        if (parameter.dataType === DATA_TYPE.FILE) {
-            return 'file';
-        }
-        return 'text';
-    }
 
     @computed
     get value() {
@@ -33,12 +20,16 @@ class Input extends React.Component {
 
     handleChange = (e) => {
         const { parameter } = this.props;
-        if (e.target.value === '') {
+        console.log(e.target.value);
+
+        if(e.target.value === ''){
             parameter.value = null;
-        } else {
-            parameter.value = e.target.value
+        }else{
+            // eslint-disable-next-line
+            parameter.value = e.target.files[0];
         }
     }
+
 
     render = () => {
         const { parameter } = this.props;
@@ -46,15 +37,12 @@ class Input extends React.Component {
             <input
                 className="form-input"
                 name={parameter.name}
-                type={this.type}
-                placeholder={parameter.placeholder}
-                value={this.value}
+                type="file"
                 onChange={this.handleChange}
                 required={parameter.required}
-                readOnly={parameter.readonly}
             />
         )
     }
 }
 
-export default Input;
+export default Filepicker;
