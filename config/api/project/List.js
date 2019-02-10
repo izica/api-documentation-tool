@@ -3,7 +3,7 @@ import {
     REQUEST_TYPE
 } from 'core';
 
-class List extends Request {
+class  List extends Request {
     init = () => {
         this.setUrl('/projects')
             .setTitle('All projects')

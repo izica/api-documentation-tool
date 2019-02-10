@@ -1,6 +1,6 @@
-import ProjectList from '../api/project/List';
-import ProjectDetail from '../api/project/Detail';
-import ProjectSave from '../api/project/Save';
+import ProjectList from './api/project/List';
+import ProjectDetail from './api/project/Detail';
+import ProjectSave from './api/project/Save';
 
 const api = {
     baseUrl: 'http://avtodom-phalcon/api/v2',

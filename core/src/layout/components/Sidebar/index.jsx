@@ -19,7 +19,7 @@ console.log(api);
 class Sidebar extends React.Component {
     tabs = {
         Api: 'Api',
-        Schema: 'Schema',
+        Models: 'Models',
     };
 
     @observable activeTab = 'Api';
