@@ -63,7 +63,11 @@ class ApiRequest extends React.Component {
     render = () => {
         return (
             <div className="panel api-request" id={this.hash}>
-                <div className="panel-header api-request__header">
+                <div className="panel-header api-request__header"
+                    onClick={() => {
+                        this.isOpened = !this.isOpened
+                    }}
+                >
                     <div className="d-flex">
                         <Badge type={this.request.type}/>
                         <h5 className="api-request__title">
@@ -71,12 +75,7 @@ class ApiRequest extends React.Component {
                         </h5>
                     </div>
                     <div className="api-request__open">
-                        <button
-                            type="button"
-                            onClick={() => {
-                                this.isOpened = !this.isOpened
-                            }}
-                            className="btn btn-primary btn-action btn-sm">
+                        <button type="button" className="btn btn-primary btn-action btn-sm">
                             <i className={this.isOpened ? "icon icon-arrow-up" : "icon icon-arrow-down"}/>
                         </button>
                     </div>

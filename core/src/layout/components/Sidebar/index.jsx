@@ -1,19 +1,19 @@
 import React from 'react';
 import {
     observable,
+    computed
 } from 'mobx';
 import { observer } from 'mobx-react';
 import { Template } from 'components';
 
 import api from 'config/api';
+import * as models from 'config/models';
 
 import SidebarTabButtons from '../SidebarTabButtons';
-import SidebarSection from '../SidebarSection';
+import SidebarApiSection from '../SidebarApiSection';
 
 import './styles.scss';
-
-// eslint-disable-next-line
-console.log(api);
+import { NavHashLink as Link } from "react-router-hash-link";
 
 @observer
 class Sidebar extends React.Component {
@@ -24,21 +24,44 @@ class Sidebar extends React.Component {
 
     @observable activeTab = 'Api';
 
-    render = () => (
-        <div className="sidebar">
-            <div className="sidebar__logo">
-                ProjectDocJS
+    @computed
+    get models() {
+        return Object.keys(models).map(key => models[key]);
+    }
+
+    render = () => {
+        return (
+            <div className="sidebar">
+                <div className="sidebar__logo">
+                    ProjectDocJS
+                </div>
+                <SidebarTabButtons
+                    tabs={this.tabs}
+                    tab={this.activeTab}
+                    onChange={(e) => {
+                        this.activeTab = e.value;
+                    }}
+                />
+                <Template visible={this.activeTab === 'Api'}>
+                    {api.sections.map(section => <SidebarApiSection key={`Sidebar${section.name}`} item={section}/>)}
+                </Template>
+                <Template visible={this.activeTab === 'Models'}>
+                    <ul className="menu menu-nav">
+                        {this.models.map(model => {
+                            return (
+                                <li key={`SidebarModelItem${model.name}`} className="menu-item">
+                                    <Link className="menu-item" to={`/model#${model.name}`}>
+                                        {model.name}
+                                    </Link>
+                                </li>
+                            );
+                        })}
+                    </ul>
+
+                </Template>
             </div>
-            <SidebarTabButtons
-                tabs={this.tabs}
-                tab={this.activeTab}
-                onChange={(e) => { this.activeTab = e.value; }}
-            />
-            <Template visible={this.activeTab === 'Api'}>
-                {api.sections.map(section => <SidebarSection key={`Sidebar${section.name}`} item={section}/>)}
-            </Template>
-        </div>
-    )
+        )
+    }
 }
 
 export default Sidebar;

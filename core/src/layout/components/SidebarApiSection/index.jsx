@@ -18,7 +18,7 @@ const getType = (type) => {
     return <span className="bg-success p-1 mr-2 s-rounded">GET</span>;
 }
 
-const SidebarSection = ({ item }) => {
+const SidebarApiSection = ({ item }) => {
     return (
         <div className="sidebar__content">
             <div className="sidebar-section">
@@ -31,7 +31,7 @@ const SidebarSection = ({ item }) => {
                             const request = new Item();
                             request.init();
                             return (
-                                <li key={`SidebarSection${request.constructor.name}`} className="menu-item">
+                                <li key={`SidebarApiSection${request.constructor.name}`} className="menu-item">
                                     <Link className="menu-item" to={`/api#${item.id}.${request.constructor.name}`}>
                                         {getType(request.type)}
                                         {request.title}
@@ -46,9 +46,9 @@ const SidebarSection = ({ item }) => {
     );
 };
 
-SidebarSection.propTypes = {
+SidebarApiSection.propTypes = {
     item: PropTypes.object
 };
 
 
-export default SidebarSection;
+export default SidebarApiSection;
