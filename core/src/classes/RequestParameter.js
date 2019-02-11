@@ -18,12 +18,31 @@ class RequestParameter {
     @observable value = null;
     @observable options = [];
 
+    constructor(properties = {}) {
+        this.setType(properties.type)
+            .setDataType(properties.dataType)
+            .setDataFormat(properties.dataType)
+            .setName(properties.name)
+            .setPlaceholder(properties.placeholder)
+            .setLabel(properties.label)
+            .setDescription(properties.description)
+            .setRequired(properties.required)
+            .setModel(properties.model)
+            .setReadonly(properties.readonly)
+            .setValue(properties.value)
+            .setOptions(properties.options);
+    }
+
     /**
      * @param dataType
      * @param dataFormat
      * @returns {RequestParameter}
      */
     setDataType = (dataType = DATA_TYPE.STRING, dataFormat = '') => {
+        if (dataType === undefined) {
+            return this;
+        }
+
         this.dataType = dataType;
 
         if (dataFormat === false) {
@@ -41,10 +60,27 @@ class RequestParameter {
     }
 
     /**
+     * @param dataFormat
+     * @returns {RequestParameter}
+     */
+    setDataFormat = (dataFormat = '') => {
+        if (dataFormat === undefined) {
+            return this;
+        }
+
+        this.dataFormat = dataFormat;
+        return this;
+    }
+
+    /**
      * @param name
      * @returns {RequestParameter}
      */
     setName = (name = 'name') => {
+        if (name === undefined) {
+            return this;
+        }
+
         if (this._isLabelSet === false) {
             this.label = name.charAt(0).toUpperCase() + name.slice(1);
         }
@@ -57,6 +93,10 @@ class RequestParameter {
      * @returns {RequestParameter}
      */
     setPlaceholder = (placeholder = '') => {
+        if (placeholder === undefined) {
+            return this;
+        }
+
         this.placeholder = placeholder;
         return this;
     }
@@ -66,6 +106,10 @@ class RequestParameter {
      * @returns {RequestParameter}
      */
     setLabel = (label = 'field') => {
+        if (label === undefined) {
+            return this;
+        }
+
         this._isLabelSet = true;
         this.label = label;
         return this;
@@ -76,6 +120,10 @@ class RequestParameter {
      * @returns {RequestParameter}
      */
     setDescription = (description = '') => {
+        if (description === undefined) {
+            return this;
+        }
+
         this.description = description;
         return this;
     }
@@ -85,6 +133,10 @@ class RequestParameter {
      * @returns {RequestParameter}
      */
     setRequired = (required = true) => {
+        if (required === undefined) {
+            return this;
+        }
+
         this.required = required;
         return this;
     }
@@ -94,6 +146,10 @@ class RequestParameter {
      * @returns {RequestParameter}
      */
     setReadonly = (readonly = true) => {
+        if (readonly === undefined) {
+            return this;
+        }
+
         this.readonly = readonly;
         return this;
     }
@@ -103,6 +159,10 @@ class RequestParameter {
      * @returns {RequestParameter}
      */
     setType = (type = PARAMETER_TYPE.QUERY) => {
+        if (type === undefined) {
+            return this;
+        }
+
         this.type = type;
         return this;
     }
@@ -112,6 +172,10 @@ class RequestParameter {
      * @returns {RequestParameter}
      */
     setValue = (value = null) => {
+        if (value === undefined) {
+            return this;
+        }
+
         this.value = value;
         return this;
     }
@@ -121,26 +185,24 @@ class RequestParameter {
      * @returns {RequestParameter}
      */
     setModel = (model = false) => {
+        if (model === undefined) {
+            return this;
+        }
+
         this.model = model;
         return this;
     }
 
+    /**
+     * @param options
+     * @returns {RequestParameter}
+     */
     setOptions = (options) => {
-        if (Array.isArray(options)) {
-            options.forEach(option => {
-                this.options.push({
-                    id: option,
-                    value: option
-                });
-            });
-        } else {
-            Object.keys(options).forEach(key => {
-                this.options.push({
-                    id: key,
-                    value: options[key]
-                });
-            });
+        if (options === undefined) {
+            return this;
         }
+
+        this.options = options;
         return this;
     }
 }

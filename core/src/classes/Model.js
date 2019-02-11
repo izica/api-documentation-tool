@@ -3,9 +3,10 @@ import ModelField from "./ModelField";
 class Model {
     fields = [];
 
-    addField = (field = new ModelField()) => {
-        console.log(field);
-        this.fields.push(field);
+    init = () => {};
+
+    addField = (field = {}) => {
+        this.fields.push(new ModelField(field));
     }
 }
 

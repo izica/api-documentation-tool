@@ -48,6 +48,9 @@ class Sidebar extends React.Component {
                 <Template visible={this.activeTab === 'Models'}>
                     <ul className="menu menu-nav">
                         {this.models.map(model => {
+                            const m = new model();
+                            m.init();
+                            console.log(m);
                             return (
                                 <li key={`SidebarModelItem${model.name}`} className="menu-item">
                                     <Link className="menu-item" to={`/model#${model.name}`}>

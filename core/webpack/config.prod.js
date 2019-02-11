@@ -2,36 +2,33 @@ const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
     entry: './core/index.js',
     output: {
         filename: './assets/bundle.js',
     },
-    devServer: {
-        contentBase: './core/public',
-        publicPath: '/',
-        hot: true,
-        open: true,
-        quiet: true,
-        historyApiFallback: true,
-    },
     plugins: [
-        new CopyWebpackPlugin([
-            {
-                from: __dirname + '/../public/production.html',
-                to: __dirname + '/../../dist/index.html'
-            }
-        ]),
+        new CopyWebpackPlugin([{
+            from: __dirname + '/../public/production.html',
+            to: __dirname + '/../../dist/index.html'
+        }]),
         new ExtractTextPlugin({
-            filename: './assets/css/styles.css',
-            allChunks: true
+            filename: './assets/styles.css'
         })
     ],
+    optimization: {
+        minimizer: [new UglifyJsPlugin({
+            uglifyOptions: {
+                keep_fnames: true,
+            }
+        })],
+    },
     module: {
         rules: [
             {
-                test: /\.(js)$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: ['babel-loader'],
             },

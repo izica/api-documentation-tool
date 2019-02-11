@@ -23,6 +23,8 @@ class Request {
 
     format = REQUEST_FORMAT.DEFAULT;
 
+    init = () => {}
+
     /**
      * @param format
      * @returns {Request}
@@ -78,60 +80,12 @@ class Request {
     };
 
     /**
-     * @param options
-     * @return {RequestParameter}
-     */
-    createParameter = (options = {}) => {
-        const parameter = new RequestParameter();
-
-        if (options.type !== undefined) {
-            parameter.setType(options.type);
-        }
-        if (options.dataType !== undefined) {
-            if(options.dataFormat !== undefined){
-                parameter.setDataType(options.dataType, options.dataFormat);
-            }else{
-                parameter.setDataType(options.dataType);
-            }
-        }
-        if (options.dataType !== undefined) {
-            parameter.setDataType(options.dataType);
-        }
-        if (options.name !== undefined) {
-            parameter.setName(options.name);
-        }
-        if (options.placeholder !== undefined) {
-            parameter.setPlaceholder(options.placeholder);
-        }
-        if (options.label !== undefined) {
-            parameter.setLabel(options.label);
-        }
-        if (options.description !== undefined) {
-            parameter.setDescription(options.label);
-        }
-        if (options.required !== undefined) {
-            parameter.setRequired(options.required);
-        }
-        if (options.model !== undefined) {
-            parameter.setModel(options.model);
-        }
-        if (options.readonly !== undefined) {
-            parameter.setReadonly(options.readonly);
-        }
-        if (options.value !== undefined) {
-            parameter.setValue(options.value);
-        }
-        if (options.options !== undefined) {
-            parameter.setOptions(options.options);
-        }
-        return parameter;
-    }
-
-    /**
-     * @param param
+     * @param parameter
      * @returns {Request}
      */
-    addParameter = (param = new RequestParameter()) => {
+    addParameter = (parameter = {}) => {
+        const param = new RequestParameter(parameter);
+
         switch (param.type) {
             case PARAMETER_TYPE.RAW:
                 this.isRaw = true;

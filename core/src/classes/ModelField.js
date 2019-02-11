@@ -1,8 +1,18 @@
+import { observable } from 'mobx';
+
 class ModelField {
-    name = '';
-    type = '';
-    null = false;
-    default = '';
+    @observable name = '';
+    @observable type = '';
+    @observable null = false;
+    @observable default = '';
+
+    constructor(properties = {}) {
+        Object.keys(properties).forEach(property => {
+            if (typeof properties[property] !== 'function') {
+                this[property] = properties[property];
+            }
+        });
+    }
 
     setName = (value = '') => {
         this.name = value;

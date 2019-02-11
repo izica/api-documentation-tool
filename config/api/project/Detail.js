@@ -1,5 +1,6 @@
 import {
     Request,
+    RequestParameter,
     PARAMETER_TYPE,
     REQUEST_TYPE,
     REQUEST_FORMAT
@@ -12,8 +13,8 @@ class Detail extends Request {
             .setType(REQUEST_TYPE.POST)
             .setFormat(REQUEST_FORMAT.JSON);
 
-        const id = this.createParameter()
-            .setType(PARAMETER_TYPE.BODY)
+        const id = new RequestParameter();
+            id.setType(PARAMETER_TYPE.BODY)
             .setName('id')
             .setModel('Project.id')
             .setRequired();

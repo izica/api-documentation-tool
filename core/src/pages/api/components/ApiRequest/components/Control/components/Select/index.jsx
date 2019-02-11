@@ -12,7 +12,7 @@ class Select extends React.Component {
 
     @computed
     get type() {
-        const { parameter } = this.props;
+        const {parameter} = this.props;
         if (parameter.dataType === DATA_TYPE.NUMBER) {
             return 'number';
         }
@@ -24,25 +24,42 @@ class Select extends React.Component {
 
     @computed
     get value() {
-        const { parameter } = this.props;
+        const {parameter} = this.props;
         if (parameter.value === null) {
             return '';
         }
         return parameter.value;
     }
 
+    @computed
+    get options() {
+        const {parameter} = this.props;
+
+        if (Array.isArray(parameter.options)) {
+            return parameter.options.map(option => ({
+                id: option,
+                value: option
+            }));
+        } else {
+            return Object.keys(parameter.options).map(key => ({
+                id: key,
+                value: parameter.options[key]
+            }));
+        }
+    }
+
     handleChange = (e) => {
-        const { parameter } = this.props;
-        if(e.target.value === ''){
+        const {parameter} = this.props;
+        if (e.target.value === '') {
             parameter.value = null;
-        }else{
+        } else {
             parameter.value = e.target.value
         }
         console.log(parameter.value);
     }
 
     render = () => {
-        const { parameter } = this.props;
+        const {parameter} = this.props;
         return (
             <select
                 className="form-input"
@@ -52,7 +69,7 @@ class Select extends React.Component {
                 required={parameter.required}
             >
                 <option value="">choose option</option>
-                {parameter.options.map(option => {
+                {this.options.map(option => {
                     return (
                         <option key={`Select${option.id}`} value={option.id}>{option.value}</option>
                     )

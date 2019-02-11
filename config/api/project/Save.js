@@ -13,14 +13,12 @@ class Save extends Request {
             .setFormat(REQUEST_FORMAT.JSON)
             .setDescription(`<div>Some description YAYAYA</div>`);
 
-        const name = this.createParameter({
+        this.addParameter({
             type: PARAMETER_TYPE.HEADER,
             name: 'Authorization',
             description: 'token from /user/login',
             placeholder: 'Bearer Token'
         });
-
-        this.addParameter(name);
     }
 }
 
