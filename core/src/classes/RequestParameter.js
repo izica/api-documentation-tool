@@ -145,7 +145,7 @@ class RequestParameter {
      * @param readonly
      * @returns {RequestParameter}
      */
-    setReadonly = (readonly = true) => {
+    setReadonly = (readonly = false) => {
         if (readonly === undefined) {
             return this;
         }

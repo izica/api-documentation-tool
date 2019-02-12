@@ -52,7 +52,10 @@ class ApiRequest extends React.Component {
         let url = this.request.baseUrl ?
             this.request.baseUrl + this.request.url :
             api.baseUrl + this.request.url;
-        let params = this.request.query.map(param => `${param.name}=${param.value}`);
+        let params = this.request.query.filter(param => param.value !== null)
+            .map(param => {
+                return `${param.name}=${param.value}`
+            });
         params = params.length > 0 ? '?' + params.join('&') : '';
         return url + params;
     }

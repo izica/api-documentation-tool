@@ -10,6 +10,11 @@ class ProjectMaterial extends Model {
             name: 'project_id',
             type: 'Project.id'
         })
+
+        this.addField({
+            name: 'material_id',
+            type: 'integer'
+        })
     }
 }
 

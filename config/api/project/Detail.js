@@ -5,6 +5,7 @@ import {
     REQUEST_TYPE,
     REQUEST_FORMAT
 } from 'core';
+import DATA_TYPE from "../../../core/src/constants/DATA_TYPE";
 
 class Detail extends Request {
     init = () => {
@@ -14,12 +15,19 @@ class Detail extends Request {
             .setFormat(REQUEST_FORMAT.JSON);
 
         const id = new RequestParameter();
-            id.setType(PARAMETER_TYPE.BODY)
+        id.setType(PARAMETER_TYPE.BODY)
+            .setOptions(['#fff', '#fsdf'])
             .setName('id')
-            .setModel('Project.id')
             .setRequired();
 
         this.addParameter(id);
+
+        const queryId = new RequestParameter();
+        queryId.setType(PARAMETER_TYPE.QUERY)
+            .setName('id')
+            .setRequired();
+
+        this.addParameter(queryId);
 
     }
 }

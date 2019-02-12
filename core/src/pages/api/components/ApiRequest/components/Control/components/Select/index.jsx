@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
-import { computed } from 'mobx';
+import { computed, isObservableArray } from 'mobx';
 import { DATA_TYPE } from "core";
 
 @observer
@@ -35,7 +35,7 @@ class Select extends React.Component {
     get options() {
         const {parameter} = this.props;
 
-        if (Array.isArray(parameter.options)) {
+        if (isObservableArray(parameter.options)) {
             return parameter.options.map(option => ({
                 id: option,
                 value: option
