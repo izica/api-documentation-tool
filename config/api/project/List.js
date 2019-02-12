@@ -7,7 +7,8 @@ class  List extends Request {
     init = () => {
         this.setUrl('/projects')
             .setTitle('All projects')
-            .setType(REQUEST_TYPE.GET);
+            .setType(REQUEST_TYPE.GET)
+            .setDescription('get project list');
     }
 }
 

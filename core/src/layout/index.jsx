@@ -9,7 +9,7 @@ import Sidebar from './components/Sidebar';
 import {
     IndexPage,
     ApiPage,
-    SchemaPage,
+    ModelsPage,
 } from '../pages';
 
 import './styles/spectre/spectre.scss';
@@ -25,7 +25,7 @@ const Layout = () => (
                     <div className="column col-10 col-mx-auto" style={{ paddingTop: 50 }}>
                         <Route path="/" exact component={IndexPage}/>
                         <Route path="/api" component={ApiPage}/>
-                        <Route path="/schema" component={SchemaPage}/>
+                        <Route path="/models" component={ModelsPage}/>
                     </div>
                 </div>
             </div>

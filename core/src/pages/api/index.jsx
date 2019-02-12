@@ -4,8 +4,6 @@ import renderHTML from 'react-render-html';
 import ApiSection from './components/ApiSection';
 import api from 'config/api'
 
-console.log(api);
-
 @observer
 class ApiPage extends React.Component {
     render = () => (

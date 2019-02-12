@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Controls = ({ children }) => (
-    <table className="table" style={{tableLayout: 'fixed'}}>
+    <table className="table">
         <thead>
             <tr>
                 <th width="130">Parameter</th>

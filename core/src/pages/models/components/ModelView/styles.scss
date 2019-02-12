@@ -1,0 +1,12 @@
+.model-view {
+    &__header {
+        font-size: 18px;
+        font-weight: 600;
+        position: relative;
+        border-bottom: 0.05rem solid #dadee4;
+    }
+
+    &__content {
+        padding: 0 0.8rem 0.8rem 0.8rem;
+    }
+}

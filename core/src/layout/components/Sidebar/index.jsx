@@ -4,8 +4,10 @@ import {
     computed
 } from 'mobx';
 import { observer } from 'mobx-react';
+import { withRouter } from 'react-router-dom';
+import { NavHashLink as Link } from "react-router-hash-link";
+import PropTypes from 'prop-types';
 import { Template } from 'components';
-
 import api from 'config/api';
 import * as models from 'config/models';
 
@@ -13,16 +15,28 @@ import SidebarTabButtons from '../SidebarTabButtons';
 import SidebarApiSection from '../SidebarApiSection';
 
 import './styles.scss';
-import { NavHashLink as Link } from "react-router-hash-link";
 
+@withRouter
 @observer
 class Sidebar extends React.Component {
+    static propTypes = {
+        history: PropTypes.object
+    }
+
     tabs = {
-        Api: 'Api',
-        Models: 'Models',
+        api: 'Api',
+        models: 'Models',
     };
 
-    @observable activeTab = 'Api';
+    @observable activeTab = 'api';
+
+    componentDidMount = () => {
+        const {history} = this.props;
+        const tab = history.location.pathname.substr(1);
+        if (this.tabs[tab]) {
+            this.activeTab = tab;
+        }
+    };
 
     @computed
     get models() {
@@ -42,18 +56,15 @@ class Sidebar extends React.Component {
                         this.activeTab = e.value;
                     }}
                 />
-                <Template visible={this.activeTab === 'Api'}>
+                <Template visible={this.activeTab === 'api'}>
                     {api.sections.map(section => <SidebarApiSection key={`Sidebar${section.name}`} item={section}/>)}
                 </Template>
-                <Template visible={this.activeTab === 'Models'}>
+                <Template visible={this.activeTab === 'models'}>
                     <ul className="menu menu-nav">
                         {this.models.map(model => {
-                            const m = new model();
-                            m.init();
-                            console.log(m);
                             return (
                                 <li key={`SidebarModelItem${model.name}`} className="menu-item">
-                                    <Link className="menu-item" to={`/model#${model.name}`}>
+                                    <Link className="menu-item" to={`/models#${model.name}`}>
                                         {model.name}
                                     </Link>
                                 </li>

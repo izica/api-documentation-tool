@@ -4,16 +4,19 @@
     &__header {
         position: relative;
         border-bottom: 0.05rem solid #dadee4;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
     }
 
     &__title {
-        margin-bottom: 0;
-        margin-top: 2px;
+        font-size: 18px;
+        font-weight: 600;
     }
 
     &__url {
         padding: 0.8rem;
-
+        font-weight: bold;
     }
 
     &__block {

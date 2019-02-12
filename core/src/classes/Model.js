@@ -7,6 +7,7 @@ class Model {
 
     addField = (field = {}) => {
         this.fields.push(new ModelField(field));
+        return this;
     }
 }
 

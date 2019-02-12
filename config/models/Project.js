@@ -2,7 +2,13 @@ import { Model } from 'core';
 
 class Project extends Model {
     init = () => {
-        this.addField();
+        this.addField({
+            name: 'id'
+        });
+
+        this.addField({
+            name: 'name'
+        })
     }
 }
 

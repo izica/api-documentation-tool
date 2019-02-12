@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
-import { observable, computed } from 'mobx';
+import {
+    observable,
+    computed
+} from 'mobx';
 import { Request } from 'core';
 import renderHTML from 'react-render-html';
 import { withRouter } from 'react-router-dom';
@@ -29,7 +32,7 @@ class ApiRequest extends React.Component {
     @observable isOpened = false;
 
     componentDidMount = () => {
-        const { request, history } = this.props;
+        const {request, history} = this.props;
         const item = new request();
         item.init();
         this.request = item;
@@ -40,7 +43,7 @@ class ApiRequest extends React.Component {
 
     @computed
     get hash() {
-        const { section, request } = this.props;
+        const {section, request} = this.props;
         return `${section.id}.${request.name}`;
     }
 
@@ -55,7 +58,7 @@ class ApiRequest extends React.Component {
     }
 
     openByHash = (hash) => {
-        if(this.isOpened === false){
+        if (this.isOpened === false) {
             this.isOpened = '#' + this.hash === hash;
         }
     }
@@ -64,15 +67,13 @@ class ApiRequest extends React.Component {
         return (
             <div className="panel api-request" id={this.hash}>
                 <div className="panel-header api-request__header"
-                    onClick={() => {
-                        this.isOpened = !this.isOpened
-                    }}
+                     onClick={() => {
+                         this.isOpened = !this.isOpened
+                     }}
                 >
-                    <div className="d-flex">
-                        <Badge type={this.request.type}/>
-                        <h5 className="api-request__title">
-                            {this.request.title}
-                        </h5>
+                    <Badge type={this.request.type}/>
+                    <div className="api-request__title">
+                        {this.request.title}
                     </div>
                     <div className="api-request__open">
                         <button type="button" className="btn btn-primary btn-action btn-sm">
@@ -82,11 +83,13 @@ class ApiRequest extends React.Component {
                 </div>
                 <Template visible={this.isOpened}>
                     <div className="api-request__url">
-                        <h6>{this.fullUrl}</h6>
-                        <Template visible={this.request.description !== ''}>
-                            {renderHTML(this.request.description)}
-                        </Template>
+                        {this.fullUrl}
                     </div>
+                    <Template visible={this.request.description !== ''}>
+                        <div className="api-request__block">
+                            {renderHTML(this.request.description)}
+                        </div>
+                    </Template>
                     <form onSubmit={e => e.preventDefault()}>
                         <Headers request={this.request}/>
                         <Query request={this.request}/>

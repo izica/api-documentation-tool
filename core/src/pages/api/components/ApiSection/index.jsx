@@ -7,7 +7,7 @@ class ApiSection extends React.Component {
     static propTypes = {
         section: PropTypes.object
     };
-    func = () => {};
+
     render = () => {
         const { section } = this.props;
         return (
