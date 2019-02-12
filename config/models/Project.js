@@ -3,7 +3,8 @@ import { Model } from 'core';
 class Project extends Model {
     init = () => {
         this.addField({
-            name: 'id'
+            name: 'id',
+            type: 'integer'
         });
 
         this.addField({
