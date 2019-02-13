@@ -5,7 +5,6 @@ import {
     REQUEST_TYPE,
     REQUEST_FORMAT
 } from 'core';
-import DATA_TYPE from "../../../core/src/constants/DATA_TYPE";
 
 class Detail extends Request {
     init = () => {

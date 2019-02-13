@@ -66,6 +66,11 @@ class ApiRequest extends React.Component {
         }
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault(); 
+        console.log(this.request);
+    }
+
     render = () => {
         return (
             <div className="panel api-request" id={this.hash}>
@@ -93,7 +98,7 @@ class ApiRequest extends React.Component {
                             {renderHTML(this.request.description)}
                         </div>
                     </Template>
-                    <form onSubmit={e => e.preventDefault()}>
+                    <form onSubmit={this.handleSubmit}>
                         <Headers request={this.request}/>
                         <Query request={this.request}/>
                         <Body request={this.request}/>
