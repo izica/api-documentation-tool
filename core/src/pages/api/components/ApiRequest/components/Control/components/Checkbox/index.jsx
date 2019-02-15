@@ -33,9 +33,9 @@ class Checkbox extends React.Component {
 
     handleChange = (e) => {
         const { parameter } = this.props;
-        if(e.target.value === ''){
+        if (e.target.value === '') {
             parameter.value = null;
-        }else{
+        } else {
             parameter.value = 1 === +e.target.value
         }
     }

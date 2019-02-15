@@ -34,7 +34,9 @@ class SidebarTabButtons extends React.Component {
                 <ul className="tab tab-block">
                     {Object.keys(tabs).map(tab => (
                         <li key={`SidebarTabButtons${tab}`} className={this.getTabClassname(tab)}>
-                            <NavLink to={tab.toLowerCase()} onClick={e => this.handleTabChange(e, tab)}>{tab}</NavLink>
+                            <NavLink to={tab.toLowerCase()} onClick={e => this.handleTabChange(e, tab)}>
+                                {tabs[tab]}
+                            </NavLink>
                         </li>
                     ))}
                 </ul>

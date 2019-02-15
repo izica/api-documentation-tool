@@ -18,6 +18,7 @@ import api from 'config/api'
 
 import './styles.scss';
 import Template from "../../../../components/Template";
+import Cookie from "./components/Cookie";
 
 @withRouter
 @observer
@@ -32,7 +33,7 @@ class ApiRequest extends React.Component {
     @observable isOpened = false;
 
     componentDidMount = () => {
-        const {request, history} = this.props;
+        const { request, history } = this.props;
         const item = new request();
         item.init();
         this.request = item;
@@ -43,7 +44,7 @@ class ApiRequest extends React.Component {
 
     @computed
     get hash() {
-        const {section, request} = this.props;
+        const { section, request } = this.props;
         return `${section.id}.${request.name}`;
     }
 
@@ -66,9 +67,41 @@ class ApiRequest extends React.Component {
         }
     }
 
+    handleResponse = (e) => {
+        console.log(e);
+    }
+
+    parseParameters = (parameters = []) => {
+        const result = {};
+        parameters.filter(parameter => parameter.value !== null)
+            .forEach(parameter => {
+                result[parameter.name] = parameter.value;
+            })
+        return result;
+    }
+
     handleSubmit = (e) => {
-        e.preventDefault(); 
-        console.log(this.request);
+        e.preventDefault();
+        const headers = this.request.getHeaders(this.parseParameters(this.request.headers));
+        const query = this.request.getQuery(this.parseParameters(this.request.query));
+        const body = this.request.getBody(this.parseParameters(this.request.body));
+        const cookie = this.request.getCookie(this.parseParameters(this.request.cookie));
+        if (this.request.handleResponse === null) {
+            this.request.handleResponse = this.handleResponse;
+        }
+        const baseUrl = this.request.baseUrl ? this.request.baseUrl : api.baseUrl;
+        const url = baseUrl + this.request.url;
+        const type = this.request.type;
+
+        this.request.execute({
+            baseUrl,
+            url,
+            type,
+            headers,
+            query,
+            body,
+            cookie
+        });
     }
 
     render = () => {
@@ -99,6 +132,7 @@ class ApiRequest extends React.Component {
                         </div>
                     </Template>
                     <form onSubmit={this.handleSubmit}>
+                        <Cookie request={this.request}/>
                         <Headers request={this.request}/>
                         <Query request={this.request}/>
                         <Body request={this.request}/>

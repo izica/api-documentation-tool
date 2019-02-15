@@ -38,7 +38,7 @@ class RequestParameter {
      * @param dataFormat
      * @returns {RequestParameter}
      */
-    setDataType = (dataType = DATA_TYPE.STRING, dataFormat = '') => {
+    setDataType = (dataType, dataFormat = '') => {
         if (dataType === undefined) {
             return this;
         }
@@ -63,7 +63,7 @@ class RequestParameter {
      * @param dataFormat
      * @returns {RequestParameter}
      */
-    setDataFormat = (dataFormat = '') => {
+    setDataFormat = (dataFormat) => {
         if (dataFormat === undefined) {
             return this;
         }
@@ -76,7 +76,7 @@ class RequestParameter {
      * @param name
      * @returns {RequestParameter}
      */
-    setName = (name = 'name') => {
+    setName = (name) => {
         if (name === undefined) {
             return this;
         }
@@ -92,7 +92,7 @@ class RequestParameter {
      * @param placeholder
      * @returns {RequestParameter}
      */
-    setPlaceholder = (placeholder = '') => {
+    setPlaceholder = (placeholder) => {
         if (placeholder === undefined) {
             return this;
         }
@@ -105,7 +105,7 @@ class RequestParameter {
      * @param label
      * @returns {RequestParameter}
      */
-    setLabel = (label = 'field') => {
+    setLabel = (label) => {
         if (label === undefined) {
             return this;
         }
@@ -119,7 +119,7 @@ class RequestParameter {
      * @param description
      * @returns {RequestParameter}
      */
-    setDescription = (description = '') => {
+    setDescription = (description) => {
         if (description === undefined) {
             return this;
         }
@@ -132,7 +132,7 @@ class RequestParameter {
      * @param required
      * @returns {RequestParameter}
      */
-    setRequired = (required = true) => {
+    setRequired = (required) => {
         if (required === undefined) {
             return this;
         }
@@ -145,7 +145,7 @@ class RequestParameter {
      * @param readonly
      * @returns {RequestParameter}
      */
-    setReadonly = (readonly = false) => {
+    setReadonly = (readonly) => {
         if (readonly === undefined) {
             return this;
         }
@@ -158,7 +158,7 @@ class RequestParameter {
      * @param type
      * @returns {RequestParameter}
      */
-    setType = (type = PARAMETER_TYPE.QUERY) => {
+    setType = (type) => {
         if (type === undefined) {
             return this;
         }
@@ -171,7 +171,7 @@ class RequestParameter {
      * @param value
      * @returns {RequestParameter}
      */
-    setValue = (value = null) => {
+    setValue = (value) => {
         if (value === undefined) {
             return this;
         }
@@ -184,7 +184,7 @@ class RequestParameter {
      * @param model
      * @returns {RequestParameter}
      */
-    setModel = (model = false) => {
+    setModel = (model) => {
         if (model === undefined) {
             return this;
         }

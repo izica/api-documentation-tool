@@ -2,8 +2,10 @@ import REQUEST_TYPE from '../constants/REQUEST_TYPE';
 import REQUEST_FORMAT from '../constants/REQUEST_FORMAT';
 import PARAMETER_TYPE from '../constants/PARAMETER_TYPE';
 import RequestParameter from './RequestParameter';
-// import api from 'config/api';
-// import axios from 'axios';
+import api from 'config/api';
+import axios from 'axios';
+import cookies from 'tough-cookie';
+import axiosCookies from 'axios-cookiejar-support';
 
 class Request {
     baseUrl = null;
@@ -15,6 +17,7 @@ class Request {
     headers = [];
     query = [];
     body = [];
+    cookie = [];
     isRaw = false;
 
     title = 'Request title';
@@ -23,7 +26,8 @@ class Request {
 
     format = REQUEST_FORMAT.DEFAULT;
 
-    init = () => {}
+    init = () => {
+    };
 
     /**
      * @param format
@@ -99,6 +103,9 @@ class Request {
             case PARAMETER_TYPE.HEADER:
                 this.headers.push(param);
                 break;
+            case PARAMETER_TYPE.COOKIE:
+                this.cookie.push(param);
+                break;
             default:
                 this.query.push(param);
                 break;
@@ -111,22 +118,40 @@ class Request {
     getQuery = query => query;
 
     getBody = body => body;
-    //
-    // beforeExecute = () => {
-    //     let headers = this.getHeaders();
-    //     const query = this.getQuery();
-    //     const getBody
-    // }
-    //
-    // execute = (type = REQUEST_TYPE.GET, headers = [], query = [], body = []) => {
-    //
-    //     const baseUrl = this.baseUrl ? this.baseUrl : api.baseUrl;
-    //     console.log(baseUrl);
-    // }
-    //
-    // handleResponse = (status = 'success', response) => {
-    //
-    // }
+
+    getCookie = cookie => cookie;
+
+    countObject = (obj) => {
+        return Object.keys(obj).length;
+    }
+
+    createCookieString = (cookieObject) => {
+        let result = '';
+        Object.keys(cookieObject).forEach(key => {
+            result += `${key}=${cookieObject[key]};`;
+        });
+        return result;
+    }
+
+    execute = (parameters) => {
+        const requestOptions = {
+            method: parameters.type,
+            url: parameters.url,
+            headers: {}
+        };
+        if (this.countObject(parameters.headers) > 0) {
+            requestOptions.headers = parameters.headers;
+        }
+        if (this.countObject(parameters.query) > 0) {
+            requestOptions.params = parameters.query;
+        }
+        if (this.countObject(parameters.body) > 0) {
+            requestOptions.data = parameters.body;
+        }
+        axios(requestOptions).then(this.handleResponse);
+    };
+
+    handleResponse = null;
 }
 
 export default Request;
