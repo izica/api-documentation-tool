@@ -2,7 +2,6 @@ import {
     Request,
     PARAMETER_TYPE,
     REQUEST_TYPE,
-    REQUEST_FORMAT,
 } from 'core';
 
 class Save extends Request {
@@ -10,7 +9,6 @@ class Save extends Request {
         this.setUrl('/projects/save')
             .setTitle('Project save')
             .setType(REQUEST_TYPE.POST)
-            .setFormat(REQUEST_FORMAT.JSON)
             .setDescription(`<div>Some description YAYAYA</div>`);
 
         this.addParameter({

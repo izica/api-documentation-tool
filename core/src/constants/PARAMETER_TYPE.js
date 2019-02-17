@@ -3,6 +3,7 @@ const PARAMETER_TYPE = {
     BODY: 'body',
     QUERY: 'query',
     RAW: 'raw',
+    PATH: 'path',
 };
 
 export default PARAMETER_TYPE;

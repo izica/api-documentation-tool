@@ -43,13 +43,13 @@ class RequestParameter {
 
         if (dataFormat === false) {
             switch (dataType) {
-            case DATA_TYPE.DATE:
-                this.dataFormat = 'Y-M-D';
-                break;
-            case DATA_TYPE.FILE:
-                this.dataFormat = '*';
-                break;
-            default:
+                case DATA_TYPE.DATE:
+                    this.dataFormat = 'Y-M-D';
+                    break;
+                case DATA_TYPE.FILE:
+                    this.dataFormat = '*';
+                    break;
+                default:
             }
         }
         return this;
@@ -116,6 +116,11 @@ class RequestParameter {
             return this;
         }
 
+        if (this.type === PARAMETER_TYPE.PATH) {
+            this.required = true;
+            return this;
+        }
+
         this.required = required;
         return this;
     }
@@ -140,6 +145,10 @@ class RequestParameter {
     setType = (type) => {
         if (type === undefined) {
             return this;
+        }
+
+        if (type === PARAMETER_TYPE.PATH) {
+            this.required = true;
         }
 
         this.type = type;

@@ -11,6 +11,7 @@ class Request {
 
     type = REQUEST_TYPE.GET;
 
+    path = [];
     headers = [];
     query = [];
     body = [];
@@ -87,6 +88,9 @@ class Request {
             break;
         case PARAMETER_TYPE.HEADER:
             this.headers.push(param);
+            break;
+        case PARAMETER_TYPE.PATH:
+            this.path.push(param);
             break;
         default:
             this.query.push(param);

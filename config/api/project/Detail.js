@@ -3,15 +3,13 @@ import {
     RequestParameter,
     PARAMETER_TYPE,
     REQUEST_TYPE,
-    REQUEST_FORMAT
 } from 'core';
 
 class Detail extends Request {
     init = () => {
-        this.setUrl('/projects/get')
+        this.setUrl('/projects/:id/get')
             .setTitle('Project by id')
-            .setType(REQUEST_TYPE.POST)
-            .setFormat(REQUEST_FORMAT.JSON);
+            .setType(REQUEST_TYPE.POST);
 
         const id = new RequestParameter();
         id.setType(PARAMETER_TYPE.BODY)
@@ -22,12 +20,11 @@ class Detail extends Request {
         this.addParameter(id);
 
         const queryId = new RequestParameter();
-        queryId.setType(PARAMETER_TYPE.QUERY)
+        queryId.setType(PARAMETER_TYPE.PATH)
             .setName('id')
             .setRequired();
 
         this.addParameter(queryId);
-
     }
 }
 

@@ -7,8 +7,6 @@ import {
 
 import Highlight from 'react-highlight.js';
 
-import Template from 'components/Template';
-
 import './styles.scss';
 
 @observer
@@ -17,13 +15,11 @@ class Response extends React.Component {
         response: PropTypes.object,
     };
 
-    @computed
-    get language() {
-        const { response } = this.props;
-        if (response.headers['content-type'] === undefined) {
+    getLanguage = (headers) => {
+        if (headers['content-type'] === undefined) {
             return 'plaintext';
         }
-        const contentType = response.headers['content-type'];
+        const contentType = headers['content-type'];
         if (contentType.indexOf('xml') > -1) {
             return 'xml';
         }
@@ -33,20 +29,30 @@ class Response extends React.Component {
         return 'plaintext';
     }
 
-    @computed
-    get body() {
-        const { response } = this.props;
-        if(typeof response.body === 'string'){
-            return response.body;
+    getBody = (body) => {
+        if (typeof body === 'string') {
+            return body;
         }
-        return JSON.stringify(response.body, null, '  ');
+        return JSON.stringify(body, null, '  ');
     }
 
-    render = () => {
-        const { response } = this.props;
-        return (
+    @computed
+    get successResult() {
+        const response = this.props.response.object;
 
-            <Template visible={response.visible}>
+        console.log(response);
+
+        if(response.data === undefined || response.headers === undefined || response.status === undefined || response.statusText === undefined){
+            return '';
+        }
+
+        const status = {
+            status: response.status,
+            statusText: response.statusText,
+        };
+
+        return (
+            <React.Fragment>
                 <div className="divider" data-content="Response"/>
                 <div className="divider" data-content="Headers"/>
                 <div className="api-request__block">
@@ -57,17 +63,98 @@ class Response extends React.Component {
                 <div className="divider" data-content="Status"/>
                 <div className="api-request__block">
                     <Highlight language="json">
-                        {JSON.stringify(response.status, null, '  ')}
+                        {JSON.stringify(status, null, '  ')}
+                    </Highlight>
+                </div>
+                <div className="divider" data-content="Body"/>
+                <div className="api-request__block api-request__block--overflow">
+                    <Highlight language={this.getLanguage(response.headers)}>
+                        {this.getBody(response.data)}
+                    </Highlight>
+                </div>
+            </React.Fragment>
+        )
+    }
+
+    @computed
+    get errorResult() {
+        const response = this.props.response.errorObject.response;
+        const status = {
+            status: response.status,
+            statusText: response.statusText,
+        };
+
+        return (
+            <React.Fragment>
+                <div className="divider" data-content="Response"/>
+                <div className="divider" data-content="Headers"/>
+                <div className="api-request__block">
+                    <Highlight language="json">
+                        {JSON.stringify(response.headers, null, '  ')}
+                    </Highlight>
+                </div>
+                <div className="divider" data-content="Status"/>
+                <div className="api-request__block">
+                    <Highlight language="json">
+                        {JSON.stringify(status, null, '  ')}
                     </Highlight>
                 </div>
                 <div className="divider" data-content="Body"/>
                 <div className="api-request__block">
-                    <Highlight language={this.language}>
-                        {this.body}
+                    <Highlight language={this.getLanguage(response.headers)}>
+                        {this.getBody(response.data)}
                     </Highlight>
                 </div>
-            </Template>
+            </React.Fragment>
         )
+    }
+
+    @computed
+    get criticalError() {
+        const response = this.props.response.errorObject;
+        return (
+            <React.Fragment>
+                <div className="divider" data-content="Response"/>
+                <div className="divider" data-content="Status"/>
+                <div className="api-request__block">
+                    <Highlight language="plaintext">
+                        Critical Error
+                    </Highlight>
+                </div>
+                <div className="divider" data-content="Body"/>
+                <div className="api-request__block">
+                    <Highlight language={this.getLanguage(response.message)}>
+                        {this.getBody(response.message)}
+                    </Highlight>
+                </div>
+            </React.Fragment>
+        )
+    }
+
+    render = () => {
+        const { response } = this.props;
+
+        if (response.state === 'waiting') {
+            return null;
+        }
+
+        if (response.state === 'loading') {
+            return (
+                <div className="api-request__block">
+                    <div className="loading loading-lg"/>
+                </div>
+            );
+        }
+
+        if (response.state === 'error') {
+            if (response.errorObject.response !== undefined) {
+                return this.errorResult
+            } else {
+                return this.criticalError;
+            }
+        }
+
+        return this.successResult;
     }
 }
 

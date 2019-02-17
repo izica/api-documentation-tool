@@ -20,6 +20,7 @@ import Response from './components/Response';
 import api from 'config/api'
 
 import './styles.scss';
+import Path from "./components/Path";
 
 @withRouter
 @observer
@@ -33,13 +34,9 @@ class ApiRequest extends React.Component {
     @observable request = new Request();
     @observable isOpened = false;
     @observable response = {
-        visible: false,
-        headers: {},
-        status: {
-            status: 200,
-            statusText: '',
-        },
-        body: ''
+        state: 'waiting',
+        errorObject: {},
+        object: {},
     };
 
     componentDidMount = () => {
@@ -59,16 +56,27 @@ class ApiRequest extends React.Component {
     }
 
     @computed
-    get fullUrl() {
+    get pathUrl() {
         let url = this.request.baseUrl ?
             this.request.baseUrl + this.request.url :
             api.baseUrl + this.request.url;
-        let params = this.request.query.filter(param => param.value !== null)
+
+        this.request.path.filter(param => param.value !== null).
+        forEach(param => {
+            url = url.replace(`:${param.name}`, param.value);
+        });
+        return url;
+    }
+
+    @computed
+    get fullUrl() {
+        let queryParams = this.request.query.filter(param => param.value !== null)
             .map(param => {
                 return `${param.name}=${param.value}`
             });
-        params = params.length > 0 ? '?' + params.join('&') : '';
-        return url + params;
+        queryParams = queryParams.length > 0 ? '?' + queryParams.join('&') : '';
+
+        return this.pathUrl + queryParams;
     }
 
     openByHash = (hash) => {
@@ -88,6 +96,8 @@ class ApiRequest extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        this.response.state = 'loading';
+
         const headers = this.request.transformHeaders(this.parseParameters(this.request.headers));
         const query = this.request.transformQuery(this.parseParameters(this.request.query));
         const body = this.request.transformBody(this.parseParameters(this.request.body));
@@ -95,27 +105,24 @@ class ApiRequest extends React.Component {
             this.request.handleResponse = this.handleResponse;
         }
         const baseUrl = this.request.baseUrl ? this.request.baseUrl : api.baseUrl;
-        const url = baseUrl + this.request.url;
         const type = this.request.type;
 
         this.request.execute({
             baseUrl,
-            url,
+            url: this.pathUrl,
             type,
             headers,
             query,
             body,
-        }).then(this.handleResponse)
-    }
-
-    handleResponse = (response) => {
-        this.response.body = response.data;
-        this.response.headers = response.headers;
-        this.response.status = {
-            status: response.status,
-            statusText: response.statusText
-        }
-        this.response.visible = true;
+        })
+        .then((response) => {
+            this.response.state = 'done';
+            this.response.object = response;
+        })
+        .catch((error) => {
+            this.response.errorObject = error;
+            this.response.state = 'error';
+        });
     }
 
     render = () => {
@@ -146,6 +153,7 @@ class ApiRequest extends React.Component {
                         </div>
                     </Template>
                     <form onSubmit={this.handleSubmit}>
+                        <Path request={this.request}/>
                         <Headers request={this.request}/>
                         <Query request={this.request}/>
                         <Body request={this.request}/>

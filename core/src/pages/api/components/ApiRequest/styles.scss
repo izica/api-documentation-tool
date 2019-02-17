@@ -22,6 +22,11 @@
     &__block {
         flex: 0 0 auto;
         padding: 0 0.8rem 0.8rem 0.8rem;
+
+        &--overflow{
+            max-height: 300px;
+            overflow: auto;
+        }
     }
 
     &__open {
