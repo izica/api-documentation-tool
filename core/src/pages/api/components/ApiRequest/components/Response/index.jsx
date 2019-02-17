@@ -36,10 +36,10 @@ class Response extends React.Component {
     @computed
     get body() {
         const { response } = this.props;
-        if(this.language === 'json'){
-            return JSON.stringify(response.body, null, "  ");
+        if(typeof response.body === 'string'){
+            return response.body;
         }
-        return response.body;
+        return JSON.stringify(response.body, null, "  ");
     }
 
     render = () => {
