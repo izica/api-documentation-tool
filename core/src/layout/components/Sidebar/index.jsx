@@ -5,7 +5,7 @@ import {
 } from 'mobx';
 import { observer } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
-import { NavHashLink as Link } from "react-router-hash-link";
+import { NavHashLink as Link } from 'react-router-hash-link';
 import PropTypes from 'prop-types';
 import { Template } from 'components';
 import api from 'config/api';

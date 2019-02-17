@@ -7,7 +7,7 @@ import {
 
 import Highlight from 'react-highlight.js';
 
-import Template from "components/Template";
+import Template from 'components/Template';
 
 import './styles.scss';
 
@@ -39,7 +39,7 @@ class Response extends React.Component {
         if(typeof response.body === 'string'){
             return response.body;
         }
-        return JSON.stringify(response.body, null, "  ");
+        return JSON.stringify(response.body, null, '  ');
     }
 
     render = () => {
@@ -51,13 +51,13 @@ class Response extends React.Component {
                 <div className="divider" data-content="Headers"/>
                 <div className="api-request__block">
                     <Highlight language="json">
-                        {JSON.stringify(response.headers, null, "  ")}
+                        {JSON.stringify(response.headers, null, '  ')}
                     </Highlight>
                 </div>
                 <div className="divider" data-content="Status"/>
                 <div className="api-request__block">
                     <Highlight language="json">
-                        {JSON.stringify(response.status, null, "  ")}
+                        {JSON.stringify(response.status, null, '  ')}
                     </Highlight>
                 </div>
                 <div className="divider" data-content="Body"/>

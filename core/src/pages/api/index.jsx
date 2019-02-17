@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import renderHTML from 'react-render-html';
 import ApiSection from './components/ApiSection';
 import api from 'config/api'
-import Template from "../../components/Template";
+import Template from '../../components/Template';
 
 @observer
 class ApiPage extends React.Component {

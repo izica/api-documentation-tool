@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import { computed } from 'mobx';
-import { DATA_TYPE } from "core";
+import { DATA_TYPE } from 'core';
 
 @observer
 class Checkbox extends React.Component {

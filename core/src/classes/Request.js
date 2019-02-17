@@ -21,18 +21,7 @@ class Request {
 
     description = '';
 
-    format = REQUEST_FORMAT.DEFAULT;
-
     init = () => {
-    };
-
-    /**
-     * @param format
-     * @returns {Request}
-     */
-    setFormat = (format = REQUEST_FORMAT.DEFAULT) => {
-        this.format = format;
-        return this;
     };
 
     /**
@@ -88,30 +77,30 @@ class Request {
         const param = new RequestParameter(parameter);
 
         switch (param.type) {
-            case PARAMETER_TYPE.RAW:
-                this.isRaw = true;
-                this.body = [param];
-                break;
-            case PARAMETER_TYPE.BODY:
-                if (this.isRaw === false) {
-                    this.body.push(param);
-                }
-                break;
-            case PARAMETER_TYPE.HEADER:
-                this.headers.push(param);
-                break;
-            default:
-                this.query.push(param);
-                break;
+        case PARAMETER_TYPE.RAW:
+            this.isRaw = true;
+            this.body = [param];
+            break;
+        case PARAMETER_TYPE.BODY:
+            if (this.isRaw === false) {
+                this.body.push(param);
+            }
+            break;
+        case PARAMETER_TYPE.HEADER:
+            this.headers.push(param);
+            break;
+        default:
+            this.query.push(param);
+            break;
         }
         return this;
     };
 
-    getHeaders = headers => headers;
+    transformHeaders = headers => headers;
 
-    getQuery = query => query;
+    transformQuery = query => query;
 
-    getBody = body => body;
+    transformBody = body => body;
 
     countObject = (obj) => {
         return Object.keys(obj).length;

@@ -1,5 +1,5 @@
-import { computed } from "mobx";
-import ModelField from "./ModelField";
+import { computed } from 'mobx';
+import ModelField from './ModelField';
 
 class Model {
     fields = [];

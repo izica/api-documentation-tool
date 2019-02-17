@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import { computed } from 'mobx';
 import moment from 'moment';
-import DatePicker from "react-datepicker";
+import DatePicker from 'react-datepicker';
 
-import "./styles/datepicker.scss";
+import './styles/datepicker.scss';
 
 @observer
 class Datepicker extends React.Component {

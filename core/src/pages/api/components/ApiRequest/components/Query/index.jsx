@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
-import Control from "../Control";
-import Controls from "../Controls";
+import Control from '../Control';
+import Controls from '../Controls';
 
 @observer
 class Query extends React.Component {

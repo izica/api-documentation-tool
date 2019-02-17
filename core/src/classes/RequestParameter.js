@@ -3,14 +3,11 @@ import PARAMETER_TYPE from '../constants/PARAMETER_TYPE';
 import DATA_TYPE from '../constants/DATA_TYPE';
 
 class RequestParameter {
-    @observable _isLabelSet = false;
-
     @observable type = PARAMETER_TYPE.QUERY;
     @observable dataType = DATA_TYPE.STRING;
     @observable dataFormat = '';
     @observable name = 'name';
     @observable placeholder = '';
-    @observable label = 'field';
     @observable description = '';
     @observable required = false;
     @observable model = false;
@@ -24,7 +21,6 @@ class RequestParameter {
             .setDataFormat(properties.dataType)
             .setName(properties.name)
             .setPlaceholder(properties.placeholder)
-            .setLabel(properties.label)
             .setDescription(properties.description)
             .setRequired(properties.required)
             .setModel(properties.model)
@@ -47,13 +43,13 @@ class RequestParameter {
 
         if (dataFormat === false) {
             switch (dataType) {
-                case DATA_TYPE.DATE:
-                    this.dataFormat = 'Y-M-D';
-                    break;
-                case DATA_TYPE.FILE:
-                    this.dataFormat = '*';
-                    break;
-                default:
+            case DATA_TYPE.DATE:
+                this.dataFormat = 'Y-M-D';
+                break;
+            case DATA_TYPE.FILE:
+                this.dataFormat = '*';
+                break;
+            default:
             }
         }
         return this;
@@ -81,9 +77,6 @@ class RequestParameter {
             return this;
         }
 
-        if (this._isLabelSet === false) {
-            this.label = name.charAt(0).toUpperCase() + name.slice(1);
-        }
         this.name = name;
         return this;
     }
@@ -98,20 +91,6 @@ class RequestParameter {
         }
 
         this.placeholder = placeholder;
-        return this;
-    }
-
-    /**
-     * @param label
-     * @returns {RequestParameter}
-     */
-    setLabel = (label) => {
-        if (label === undefined) {
-            return this;
-        }
-
-        this._isLabelSet = true;
-        this.label = label;
         return this;
     }
 

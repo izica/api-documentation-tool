@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { observable } from "mobx";
-import { observer } from "mobx-react";
-import { NavHashLink as Link } from "react-router-hash-link";
-import * as models from "config/models";
+import { observable } from 'mobx';
+import { observer } from 'mobx-react';
+import { NavHashLink as Link } from 'react-router-hash-link';
+import * as models from 'config/models';
 
 import './styles.scss';
-import ModelViewField from "./components/ModelViewField";
+import ModelViewField from './components/ModelViewField';
 
 @observer
 class ModelView extends React.Component {
@@ -59,16 +59,16 @@ class ModelView extends React.Component {
                 <div className="model-view__content">
                     <table className="table">
                         <thead>
-                        <tr>
-                            <th width="15%">Field</th>
-                            <th width="15%">Type</th>
-                            <th width="15%">Required</th>
-                            <th width="15%">Default value</th>
-                            <th>Description</th>
-                        </tr>
+                            <tr>
+                                <th width="15%">Field</th>
+                                <th width="15%">Type</th>
+                                <th width="15%">Required</th>
+                                <th width="15%">Default value</th>
+                                <th>Description</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        {this.model.fields.map(field => <ModelViewField key={`${modelName}.${field.name}`} field={field} modelName={modelName}/>)}
+                            {this.model.fields.map(field => <ModelViewField key={`${modelName}.${field.name}`} field={field} modelName={modelName}/>)}
                         </tbody>
                     </table>
                 </div>

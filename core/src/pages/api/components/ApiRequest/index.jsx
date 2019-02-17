@@ -9,13 +9,13 @@ import { Request } from 'core';
 import renderHTML from 'react-render-html';
 import { withRouter } from 'react-router-dom';
 
-import Template from "components/Template";
+import Template from 'components/Template';
 
 import Badge from './components/Badge';
-import Body from "./components/Body";
-import Query from "./components/Query";
-import Headers from "./components/Headers";
-import Response from "./components/Response";
+import Body from './components/Body';
+import Query from './components/Query';
+import Headers from './components/Headers';
+import Response from './components/Response';
 
 import api from 'config/api'
 
@@ -88,9 +88,9 @@ class ApiRequest extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const headers = this.request.getHeaders(this.parseParameters(this.request.headers));
-        const query = this.request.getQuery(this.parseParameters(this.request.query));
-        const body = this.request.getBody(this.parseParameters(this.request.body));
+        const headers = this.request.transformHeaders(this.parseParameters(this.request.headers));
+        const query = this.request.transformQuery(this.parseParameters(this.request.query));
+        const body = this.request.transformBody(this.parseParameters(this.request.body));
         if (this.request.handleResponse === null) {
             this.request.handleResponse = this.handleResponse;
         }
@@ -109,7 +109,6 @@ class ApiRequest extends React.Component {
     }
 
     handleResponse = (response) => {
-        console.log(response);
         this.response.body = response.data;
         this.response.headers = response.headers;
         this.response.status = {
@@ -123,9 +122,9 @@ class ApiRequest extends React.Component {
         return (
             <div className="panel api-request" id={this.hash}>
                 <div className="panel-header api-request__header"
-                     onClick={() => {
-                         this.isOpened = !this.isOpened
-                     }}
+                    onClick={() => {
+                        this.isOpened = !this.isOpened
+                    }}
                 >
                     <Badge type={this.request.type}/>
                     <div className="api-request__title">
@@ -133,7 +132,7 @@ class ApiRequest extends React.Component {
                     </div>
                     <div className="api-request__open">
                         <button type="button" className="btn btn-primary btn-action btn-sm">
-                            <i className={this.isOpened ? "icon icon-arrow-up" : "icon icon-arrow-down"}/>
+                            <i className={this.isOpened ? 'icon icon-arrow-up' : 'icon icon-arrow-down'}/>
                         </button>
                     </div>
                 </div>

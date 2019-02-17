@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { computed } from "mobx";
-import { observer } from "mobx-react";
-import { NavHashLink as Link } from "react-router-hash-link";
-import * as models from "config/models";
+import { computed } from 'mobx';
+import { observer } from 'mobx-react';
+import { NavHashLink as Link } from 'react-router-hash-link';
+import * as models from 'config/models';
 
 @observer
 class ModelViewField extends React.Component {
@@ -37,7 +37,7 @@ class ModelViewField extends React.Component {
             }
         }
         return field.type;
-    };
+    }
 
     render = () => {
         const {field, modelName} = this.props;
