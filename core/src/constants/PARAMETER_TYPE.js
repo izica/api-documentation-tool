@@ -3,7 +3,6 @@ const PARAMETER_TYPE = {
     BODY: 'body',
     QUERY: 'query',
     RAW: 'raw',
-    COOKIE: 'cookie',
 };
 
 export default PARAMETER_TYPE;

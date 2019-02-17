@@ -2,10 +2,8 @@ import REQUEST_TYPE from '../constants/REQUEST_TYPE';
 import REQUEST_FORMAT from '../constants/REQUEST_FORMAT';
 import PARAMETER_TYPE from '../constants/PARAMETER_TYPE';
 import RequestParameter from './RequestParameter';
-import api from 'config/api';
+// import api from 'config/api';
 import axios from 'axios';
-import cookies from 'tough-cookie';
-import axiosCookies from 'axios-cookiejar-support';
 
 class Request {
     baseUrl = null;
@@ -17,7 +15,6 @@ class Request {
     headers = [];
     query = [];
     body = [];
-    cookie = [];
     isRaw = false;
 
     title = 'Request title';
@@ -103,9 +100,6 @@ class Request {
             case PARAMETER_TYPE.HEADER:
                 this.headers.push(param);
                 break;
-            case PARAMETER_TYPE.COOKIE:
-                this.cookie.push(param);
-                break;
             default:
                 this.query.push(param);
                 break;
@@ -119,18 +113,8 @@ class Request {
 
     getBody = body => body;
 
-    getCookie = cookie => cookie;
-
     countObject = (obj) => {
         return Object.keys(obj).length;
-    }
-
-    createCookieString = (cookieObject) => {
-        let result = '';
-        Object.keys(cookieObject).forEach(key => {
-            result += `${key}=${cookieObject[key]};`;
-        });
-        return result;
     }
 
     execute = (parameters) => {
@@ -148,10 +132,8 @@ class Request {
         if (this.countObject(parameters.body) > 0) {
             requestOptions.data = parameters.body;
         }
-        axios(requestOptions).then(this.handleResponse);
+        return axios(requestOptions);
     };
-
-    handleResponse = null;
 }
 
 export default Request;

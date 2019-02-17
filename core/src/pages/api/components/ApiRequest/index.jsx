@@ -9,16 +9,17 @@ import { Request } from 'core';
 import renderHTML from 'react-render-html';
 import { withRouter } from 'react-router-dom';
 
+import Template from "components/Template";
+
 import Badge from './components/Badge';
 import Body from "./components/Body";
 import Query from "./components/Query";
 import Headers from "./components/Headers";
+import Response from "./components/Response";
 
 import api from 'config/api'
 
 import './styles.scss';
-import Template from "../../../../components/Template";
-import Cookie from "./components/Cookie";
 
 @withRouter
 @observer
@@ -31,6 +32,15 @@ class ApiRequest extends React.Component {
 
     @observable request = new Request();
     @observable isOpened = false;
+    @observable response = {
+        visible: false,
+        headers: {},
+        status: {
+            status: 200,
+            statusText: '',
+        },
+        body: ''
+    };
 
     componentDidMount = () => {
         const { request, history } = this.props;
@@ -67,10 +77,6 @@ class ApiRequest extends React.Component {
         }
     }
 
-    handleResponse = (e) => {
-        console.log(e);
-    }
-
     parseParameters = (parameters = []) => {
         const result = {};
         parameters.filter(parameter => parameter.value !== null)
@@ -85,7 +91,6 @@ class ApiRequest extends React.Component {
         const headers = this.request.getHeaders(this.parseParameters(this.request.headers));
         const query = this.request.getQuery(this.parseParameters(this.request.query));
         const body = this.request.getBody(this.parseParameters(this.request.body));
-        const cookie = this.request.getCookie(this.parseParameters(this.request.cookie));
         if (this.request.handleResponse === null) {
             this.request.handleResponse = this.handleResponse;
         }
@@ -100,8 +105,18 @@ class ApiRequest extends React.Component {
             headers,
             query,
             body,
-            cookie
-        });
+        }).then(this.handleResponse)
+    }
+
+    handleResponse = (response) => {
+        console.log(response);
+        this.response.body = response.data;
+        this.response.headers = response.headers;
+        this.response.status = {
+            status: response.status,
+            statusText: response.statusText
+        }
+        this.response.visible = true;
     }
 
     render = () => {
@@ -132,7 +147,6 @@ class ApiRequest extends React.Component {
                         </div>
                     </Template>
                     <form onSubmit={this.handleSubmit}>
-                        <Cookie request={this.request}/>
                         <Headers request={this.request}/>
                         <Query request={this.request}/>
                         <Body request={this.request}/>
@@ -140,6 +154,7 @@ class ApiRequest extends React.Component {
                             <button type="submit" className="btn">Send request</button>
                         </div>
                     </form>
+                    <Response response={this.response}/>
                 </Template>
             </div>
         )

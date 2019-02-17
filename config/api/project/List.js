@@ -12,7 +12,7 @@ class  List extends Request {
             .setDescription('get project list');
 
         this.addParameter({
-            type: PARAMETER_TYPE.COOKIE,
+            type: PARAMETER_TYPE.HEADER,
             name: 'AUTH',
         });
     }
