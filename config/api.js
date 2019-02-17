@@ -3,13 +3,13 @@ import ProjectDetail from './api/project/Detail';
 import ProjectSave from './api/project/Save';
 
 const api = {
-    baseUrl: 'http://avtodom-phalcon/api/v2',
     title: 'Title',
     description: `
         <div>
             description <b>bold</b>
         </div>
     `,
+    baseUrl: 'http://avtodom-phalcon/api/v2',
     sections: [
         {
             id: 'projects',
