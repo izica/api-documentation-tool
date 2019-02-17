@@ -12,9 +12,9 @@ class ApiSection extends React.Component {
         const { section } = this.props;
         return (
             <React.Fragment>
-                <h3 id={section.id}>{section.title}</h3>
+                <h3 id={section.id}>{section.title ? section.title : ''}</h3>
                 <div style={{marginBottom: 10}}>
-                    {renderHTML(section.description)}
+                    {renderHTML(section.description ? section.description : '')}
                 </div>
                 {section.requests.map(request => (
                     <ApiRequest
