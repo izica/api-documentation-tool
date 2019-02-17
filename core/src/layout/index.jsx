@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    BrowserRouter,
+    HashRouter,
     Route,
 } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ import './styles/spectre/spectre-icons.scss';
 import './styles/styles.scss';
 
 const Layout = () => (
-    <BrowserRouter>
+    <HashRouter>
         <div className="layout">
             <Sidebar/>
             <div className="layout__content">
@@ -30,7 +30,7 @@ const Layout = () => (
                 </div>
             </div>
         </div>
-    </BrowserRouter>
+    </HashRouter>
 );
 
 export default Layout;

@@ -7,6 +7,7 @@ import appConfig from '../../config/app';
 
 const buildPath = appConfig.buildPath ? appConfig.buildPath : 'dist';
 const BUILD_PATH = __dirname + '/../../' + buildPath;
+console.log(BUILD_PATH);
 
 module.exports = {
     entry: './core/index.js',

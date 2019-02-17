@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -8,5 +10,8 @@ ReactDOM.render(
     document.getElementById('app'),
 );
 
-/* eslint-disable-next-line */
-module.hot.accept();
+if(module){
+    if(module.hot){
+        module.hot.accept();
+    }
+}

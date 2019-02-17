@@ -48,7 +48,7 @@ class ApiRequest extends React.Component {
         item.init();
         this.request = item;
 
-        this.openByHash(window.location.hash);
+        this.openByHash(history.location.hash);
         history.listen(location => this.openByHash(location.hash));
     };
 

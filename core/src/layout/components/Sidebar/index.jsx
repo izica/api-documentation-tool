@@ -32,6 +32,8 @@ class Sidebar extends React.Component {
     @observable activeTab = 'api';
 
     componentDidMount = () => {
+        document.title = app.appName;
+
         const {history} = this.props;
         const tab = history.location.pathname.substr(1);
         if (this.tabs[tab]) {

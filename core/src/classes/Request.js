@@ -1,5 +1,4 @@
 import REQUEST_TYPE from '../constants/REQUEST_TYPE';
-import REQUEST_FORMAT from '../constants/REQUEST_FORMAT';
 import PARAMETER_TYPE from '../constants/PARAMETER_TYPE';
 import RequestParameter from './RequestParameter';
 // import api from 'config/api';
