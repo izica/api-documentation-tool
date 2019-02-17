@@ -1,6 +1,6 @@
 const app = {
     appName: 'ProjectDocJs',
-    buildPath: '../'
+    buildPath: 'dist'
 };
 
 export default app;
