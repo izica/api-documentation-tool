@@ -3,16 +3,21 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+import appConfig from '../../config/app';
+
+const buildPath = appConfig.buildPath ? appConfig.buildPath : 'dist';
+const BUILD_PATH = __dirname + '/../../' + buildPath;
 
 module.exports = {
     entry: './core/index.js',
     output: {
+        path: BUILD_PATH,
         filename: './assets/bundle.js',
     },
     plugins: [
         new CopyWebpackPlugin([{
             from: __dirname + '/../public/production.html',
-            to: __dirname + '/../../dist/index.html'
+            to: BUILD_PATH + '/index.html'
         }]),
         new ExtractTextPlugin({
             filename: './assets/styles.css'

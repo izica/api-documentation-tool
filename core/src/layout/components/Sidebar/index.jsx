@@ -9,6 +9,7 @@ import { NavHashLink as Link } from "react-router-hash-link";
 import PropTypes from 'prop-types';
 import { Template } from 'components';
 import api from 'config/api';
+import app from 'config/app';
 import * as models from 'config/models';
 
 import SidebarTabButtons from '../SidebarTabButtons';
@@ -47,7 +48,7 @@ class Sidebar extends React.Component {
         return (
             <div className="sidebar">
                 <div className="sidebar__logo">
-                    ProjectDocJS
+                    {app.appName}
                 </div>
                 <SidebarTabButtons
                     tabs={this.tabs}

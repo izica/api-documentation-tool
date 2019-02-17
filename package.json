@@ -2,8 +2,8 @@
     "name": "project-doc-js",
     "version": "1.0.0",
     "scripts": {
-        "start": "webpack-dev-server --config ./core/webpack/config.dev.js --mode development",
-        "build": "webpack --config ./core/webpack/config.prod.js --mode production --env.production",
+        "start": "webpack-dev-server --config ./core/webpack/config.dev.babel.js --mode development",
+        "build": "webpack --config ./core/webpack/config.prod.babel.js --mode production --env.production",
         "eslint": "eslint core/**/*.js core/**/*.jsx --fix",
         "models-mysql": "node ./core/utils/mysql.js"
     },
@@ -15,6 +15,7 @@
         "@babel/plugin-proposal-export-default-from": "^7.2.0",
         "@babel/preset-env": "^7.2.3",
         "@babel/preset-react": "^7.0.0",
+        "@babel/register": "^7.0.0",
         "@babel/runtime": "^7.2.0",
         "autoprefixer": "^9.4.7",
         "axios": "^0.18.0",
