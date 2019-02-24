@@ -20,7 +20,7 @@ import Response from './components/Response';
 import api from 'config/api'
 
 import './styles.scss';
-import Path from "./components/Path";
+import Path from './components/Path';
 
 @withRouter
 @observer
@@ -35,6 +35,7 @@ class ApiRequest extends React.Component {
     @observable isOpened = false;
     @observable response = {
         state: 'waiting',
+        time: 0,
         errorObject: {},
         object: {},
     };
@@ -62,9 +63,9 @@ class ApiRequest extends React.Component {
             api.baseUrl + this.request.url;
 
         this.request.path.filter(param => param.value !== null).
-        forEach(param => {
-            url = url.replace(`:${param.name}`, param.value);
-        });
+            forEach(param => {
+                url = url.replace(`:${param.name}`, param.value);
+            });
         return url;
     }
 
@@ -97,6 +98,7 @@ class ApiRequest extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.response.state = 'loading';
+        this.response.time = Date.now();
 
         const headers = this.request.transformHeaders(this.parseParameters(this.request.headers));
         const query = this.request.transformQuery(this.parseParameters(this.request.query));
@@ -115,14 +117,15 @@ class ApiRequest extends React.Component {
             query,
             body,
         })
-        .then((response) => {
-            this.response.state = 'done';
-            this.response.object = response;
-        })
-        .catch((error) => {
-            this.response.errorObject = error;
-            this.response.state = 'error';
-        });
+            .then((response) => {
+                this.response.object = response;
+                this.response.time = Date.now() - this.response.time;
+                this.response.state = 'done';
+            })
+            .catch((error) => {
+                this.response.errorObject = error;
+                this.response.state = 'error';
+            });
     }
 
     render = () => {

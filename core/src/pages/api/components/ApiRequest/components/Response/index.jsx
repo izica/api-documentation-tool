@@ -40,8 +40,6 @@ class Response extends React.Component {
     get successResult() {
         const response = this.props.response.object;
 
-        console.log(response);
-
         if(response.data === undefined || response.headers === undefined || response.status === undefined || response.statusText === undefined){
             return '';
         }
@@ -53,7 +51,7 @@ class Response extends React.Component {
 
         return (
             <React.Fragment>
-                <div className="divider" data-content="Response"/>
+                <div className="divider" data-content={`Response ${this.props.response.time}ms`}/>
                 <div className="divider" data-content="Headers"/>
                 <div className="api-request__block">
                     <Highlight language="json">

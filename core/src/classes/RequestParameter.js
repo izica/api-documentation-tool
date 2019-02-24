@@ -43,13 +43,13 @@ class RequestParameter {
 
         if (dataFormat === false) {
             switch (dataType) {
-                case DATA_TYPE.DATE:
-                    this.dataFormat = 'Y-M-D';
-                    break;
-                case DATA_TYPE.FILE:
-                    this.dataFormat = '*';
-                    break;
-                default:
+            case DATA_TYPE.DATE:
+                this.dataFormat = 'Y-M-D';
+                break;
+            case DATA_TYPE.FILE:
+                this.dataFormat = '*';
+                break;
+            default:
             }
         }
         return this;
