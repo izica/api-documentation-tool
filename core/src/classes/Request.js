@@ -103,7 +103,19 @@ class Request {
 
     transformQuery = query => query;
 
-    transformBody = body => body;
+    transformBody = body => {
+        if (!body) {
+            return false
+        }
+        if (body == {}) {
+            return false;
+        }
+        const formData = new FormData();
+        Object.keys(body).forEach(key => {
+            formData.set(key, body[key]);
+        });
+        return formData;
+    }
 
     countObject = (obj) => {
         return Object.keys(obj).length;
@@ -121,7 +133,7 @@ class Request {
         if (this.countObject(parameters.query) > 0) {
             requestOptions.params = parameters.query;
         }
-        if (this.countObject(parameters.body) > 0) {
+        if (parameters.body !== false) {
             requestOptions.data = parameters.body;
         }
         return axios(requestOptions);
