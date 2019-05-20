@@ -1,4 +1,6 @@
-# project-doc-js
+# Hackable pure JS documenation for your API like Swagger
+Build your API reference with pure Javascript
+Also you can modify core, which written on ReactJS
 
 ## Installation and Usage
 ```
