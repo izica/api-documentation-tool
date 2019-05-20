@@ -21,7 +21,7 @@ npm run build
 ## Building your API documentation
 ### Model creating(Database table reference for example)
 * Create config/models/<YourModelName>.js
-```
+```javascript
 import { Model } from 'core';
 
 class User extends Model {
@@ -44,7 +44,7 @@ class User extends Model {
 
 export default Customer;
 ```
-```
+```javascript
 //add field to model
 addField({
     name, //string
