@@ -60,7 +60,7 @@ class Sidebar extends React.Component {
                     }}
                 />
                 <Template visible={this.activeTab === 'api'}>
-                    {api.sections.map(section => <SidebarApiSection key={`Sidebar${section.name}`} item={section}/>)}
+                    {api.sections.map(section => <SidebarApiSection key={`Sidebar${section.id}`} item={section}/>)}
                 </Template>
                 <Template visible={this.activeTab === 'models'}>
                     <ul className="menu menu-nav">
