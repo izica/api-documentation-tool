@@ -1,4 +1,4 @@
-# Hackable pure JS documenation for your API like Swagger
+# Hackable JS documenation for your API
 Build your API reference with pure Javascript
 Also you can modify core, which written on ReactJS
 
@@ -150,7 +150,7 @@ class Product extends Model {
         });
     }
 ```
-![alt screen3](https://raw.githubusercontent.com/izica/project-doc-js/master/core/git_images/field_type_link.png)
+![alt screen3](https://raw.githubusercontent.com/izica/project-doc-js/master/core/git_images/field_type_linked.png)
 
 ## Class docs
 #### core partials
