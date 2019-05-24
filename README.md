@@ -207,7 +207,7 @@ import {
 * required: Boolean
 * readonly: Boolean
 * value: Any - default value, depends on control type
-* options: Array - if length > 0, form control type will be <select/>, example: ['red', 'yellow', 'green']
+* options: Array - if length > 0, form control type will be Select, example: ['red', 'yellow', 'green']
 * setType(PARAMETER_TYPE)
 * setDataType(DATA_TYPE)
 * setName(name)
