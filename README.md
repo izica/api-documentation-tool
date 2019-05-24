@@ -150,7 +150,7 @@ class Product extends Model {
         });
     }
 ```
-![alt screen3](https://raw.githubusercontent.com/izica/project-doc-js/master/core/git_images/field_type_link.png)
+![alt screen3](https://raw.githubusercontent.com/izica/project-doc-js/master/core/git_images/field_type_linked.png)
 
 ## Class docs
 #### core partials
