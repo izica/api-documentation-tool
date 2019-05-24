@@ -1,4 +1,4 @@
-# Hackable pure JS documenation for your API
+# Hackable JS documenation for your API
 Build your API reference with pure Javascript
 Also you can modify core, which written on ReactJS
 
