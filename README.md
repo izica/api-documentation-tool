@@ -24,12 +24,12 @@ npm start
 npm run build
 ```
 
-## Build your API documentation
-### Manual config
+# Build your API documentation
+## Manual config
 * edit `config/app.js`, set your `appName`, and `buildPath`, you can add all repo to `src` folder and set `buildPath: '../'`
 * edit `config/api.js` and set `baseUrl` to your backend URL
 
-### Api requests creating
+## Api requests creating
 * create request in `config/api/`
 * `import` request to `config/api.js`
 * In `config/api.js` add reqiest to `sections` for adding request to api page
@@ -85,7 +85,7 @@ const api = {
 export default api;
 ```
 
-#### PARAMETER_TYPE.PATH
+### PARAMETER_TYPE.PATH
 PARAMETER_TYPE.PATH add parameter value to request URL
 
 ```javascript
@@ -110,7 +110,7 @@ this.setUrl('/catalog/:category_id/:product_id/get')
 ![alt screen3](https://raw.githubusercontent.com/izica/project-doc-js/master/core/git_images/parameter_path.png)
 
 
-### Model creating(Database table reference for example)
+## Model creating(Database table reference for example)
 * Create `config/models/<YourModelName>.js`
 * `import` your model to `config/models.js`
     
@@ -148,7 +148,7 @@ addField({
 })
 ```
 
-#### You can use linked field type
+### You can use linked field type
 ```
 import { Model } from 'core';
 
@@ -176,8 +176,8 @@ class Product extends Model {
 ```
 ![alt screen3](https://raw.githubusercontent.com/izica/project-doc-js/master/core/git_images/field_type_linked.png)
 
-## Class docs
-#### core partials
+# Class docs
+## core partials
 * Model
 * ModelField
 * Request
@@ -194,10 +194,10 @@ import {
 } from 'core';
 ```
 
-#### Model
+## Model
 * addField(object || ModelField) - object has same structure as ModelField class
 
-#### ModelField
+## ModelField
 * name: String = 'field'
 * type: String = 'string'
 * null: Boolean = false - field is required or not
@@ -209,7 +209,7 @@ import {
 * setDefault(value)
 * setDescription(value)
 
-#### Request
+## Request
 * init()
 * setBaseUrl(baseUrl) - set new base api url for current endpoint
 * setUrl(url) - set url for api request, you can use templating with PARAMETER_TYPE.PATH, '/:product_category_code/product/:id'
@@ -221,7 +221,7 @@ import {
 * transformQuery(query) => query
 * transformBody(body) => body
 
-#### RequestParameter
+## RequestParameter
 * type: PARAMETER_TYPE
 * dataType: DATA_TYPE
 * dataFormat: String - need for DATA_TYPE.DATE, depends on momentjs, example: 'Y-m-d'
@@ -242,20 +242,20 @@ import {
 * setValue(defaultValue)
 * setOptions(options)
 
-#### REQUEST_TYPE
+## REQUEST_TYPE
 * GET: 'get'
 * POST: 'post'
 * PUT: 'put'
 * DELETE: 'delete'
 
-#### DATA_TYPE
+## DATA_TYPE
 * STRING: 'string' - Input, if options.length > 0 -> Select
 * NUMBER: 'number' - Input type=number
 * DATE: 'date' - Datepicker(react-datepicker + momentjs)
 * BOOLEAN: 'boolean' - Checkbox
 * FILE: 'file' - Input type=file
 
-#### PARAMETER_TYPE
+## PARAMETER_TYPE
 * HEADER: 'header'
 * BODY: 'body' - for POST parameters
 * QUERY: 'query' - for GET parameters
