@@ -85,6 +85,30 @@ const api = {
 export default api;
 ```
 
+#### PARAMETER_TYPE.PATH
+PARAMETER_TYPE.PATH add parameter value to request URL
+
+```javascript
+class DeviceCodeSend extends Request {
+    init = () => {
+        this.setUrl('/customer-device-code/send/:phone')
+            .setTitle('Send sms')
+            .setType(REQUEST_TYPE.POST);
+
+        this.addParameter({
+            type: PARAMETER_TYPE.PATH,
+            name: 'phone',
+            placeholder: '+79131001010'
+        });
+    }
+}
+```
+also you can do that
+```javascript
+this.setUrl('/catalog/:category_id/:product_id/get')
+```
+![alt screen3](https://raw.githubusercontent.com/izica/project-doc-js/master/core/git_images/parameter_path.png)
+
 
 ### Model creating(Database table reference for example)
 * Create `config/models/<YourModelName>.js`
