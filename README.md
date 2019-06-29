@@ -1,12 +1,14 @@
-# Hackable JS documenation for your API
+# Easy API documentation, based on JS without any backend.
 Build your API reference with pure Javascript
 Also you can modify core, which written on ReactJS
 
-![alt screen1](https://raw.githubusercontent.com/izica/project-doc-js/master/core/git_images/screenshot-4.png)
-
-![alt screen2](https://raw.githubusercontent.com/izica/project-doc-js/master/core/git_images/screenshot-5.png)
-
-![alt screen3](https://raw.githubusercontent.com/izica/project-doc-js/master/core/git_images/screenshot-6.png)
+## Features
+* Declarative API description
+* Supports POST, GET, PUT, DELETE requests
+* Custom transformations for Requests: header, body, path params
+* Customizable core
+* ReactJS core
+* Models section
 
 ## Installation and Usage
 ```
@@ -23,6 +25,15 @@ npm start
 ```
 npm run build
 ```
+
+
+![alt screen1](https://raw.githubusercontent.com/izica/project-doc-js/master/core/git_images/screenshot-4.png)
+
+![alt screen2](https://raw.githubusercontent.com/izica/project-doc-js/master/core/git_images/screenshot-5.png)
+
+![alt screen3](https://raw.githubusercontent.com/izica/project-doc-js/master/core/git_images/screenshot-6.png)
+
+
 
 # Build your API documentation
 ## Manual config
